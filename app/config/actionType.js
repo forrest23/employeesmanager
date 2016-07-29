@@ -5,5 +5,5 @@
 
 export const APP = {
     'SPLASH': 'SPLASH',//闪屏
-    'GESTURE':'GESTURE'//手势密码
+    'checkLoginState':'checkLoginState'//手势密码
 }

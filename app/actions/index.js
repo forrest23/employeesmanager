@@ -4,10 +4,11 @@
  * 我们约定action内使用一个字符串类型的TYPE字段来表示将要执行的行为
  */
 'use strict';
-import {closeSplashScreen} from './application';
+import {closeSplashScreen,checkLoginState} from './application';
 
 const actions = {
-    closeSplashScreen//关闭闪屏
+    closeSplashScreen,//关闭闪屏
+    checkLoginState
 }
 
 export default actions;

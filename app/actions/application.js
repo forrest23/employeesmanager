@@ -14,8 +14,6 @@ import { APP } from '../config/actionType';
  * 异步Action 不会马上把数据传递给reducer，但是一旦操作完成就会触发action的分发事件。
  */
 export function closeSplashScreen() {
-    // Thunk middleware 知道如何处理函数
-    // 这里把 dispatch 方法通过参数的形式传给函数，让它也能 dispatch action。
     return (dispatch) => {
         return Promise.resolve(dispatch({
             type: APP.SPLASH,//将要执行的行为
@@ -24,13 +22,16 @@ export function closeSplashScreen() {
     }
 }
 
-export function showGestureScreen() {
-    // Thunk middleware 知道如何处理函数
-    // 这里把 dispatch 方法通过参数的形式传给函数，让它也能 dispatch action。
-    return (dispatch) => {
+export function checkLoginState() {
+   return (dispatch) => {
         return Promise.resolve(dispatch({
-            type: APP.GESTURE,//将要执行的行为
-            data: false
+            type: APP.checkLoginState,//将要执行的行为
+            data: getSate()
         }));
     }
+}
+
+function getSate()
+{
+    return '0';
 }

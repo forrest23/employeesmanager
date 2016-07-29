@@ -8,13 +8,15 @@ import {
 
 import {Actions, Scene, Router} from 'react-native-router-flux';
 
-import Home from '../containers/home';
-import Me from '../containers/me';
-import Message from '../containers/message';
-import Calendar from '../containers/calendar';
+import Home from '../containers/home';//首页
+import Me from '../containers/me';//我的
+import Message from '../containers/message';//消息
+import Calendar from '../containers/calendar';//日程
+
+import CheckGesture from '../components/checkGesture';//验证手势密码
+import SetGesture from '../components/setGesture';//设置手势密码
 
 import TabIcon from '../components/tabIcon';
-
 
 const Right = () => (
   <Text
@@ -44,7 +46,9 @@ const styles = StyleSheet.create({
 
 export const scenes = Actions.create(
   <Scene key="root">
-    <Scene key="mainPage" tabs tabBarStyle={styles.tabBarStyle} tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
+    <Scene key="checkGesture"  component={CheckGesture} title="验证手势密码" />
+    <Scene key="setGesture"  component={SetGesture} title="设置手势密码" />
+    <Scene key="mainPage" initial tabs tabBarStyle={styles.tabBarStyle} tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
       <Scene key="home" initial title="首页" icon={TabIcon} iconName="home">
         <Scene
           key="tab2_1"

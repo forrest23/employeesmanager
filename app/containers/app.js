@@ -1,11 +1,13 @@
 
 'use strict'
 
-import React, { Component,PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   Text,
   View,
+  AppState,
+  BackAndroid,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -13,17 +15,10 @@ import { bindActionCreators } from 'redux';
 import allActions from '../actions';
 
 import { scenes } from '../config/scenes';
-
+import {toastShort} from '../utils/toast'; //提示框
 import Splash from './splash';//闪屏
 
-import {
-  Scene,
-  Reducer,
-  Router,
-  Switch,
-  Modal,
-  Actions,
-} from 'react-native-router-flux';
+import { Actions, Router } from 'react-native-router-flux';
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
   const style = {
@@ -49,15 +44,53 @@ const reducerCreate = params => {
   };
 };
 
+let count = 0;
+
 class App extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    AppState.addEventListener('change', this.handleAppStateChange.bind(this));
+    BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton);
+
+    const {actions} = this.props;
+    actions.checkLoginState();
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this.handleAppStateChange.bind(this));
+    BackAndroid.removeEventListener('hardwareBackPress', this.handleBackButton);
+  }
+
+  handleBackButton() {
+    if (count == 0) {
+      count += 1;
+      toastShort('再按一次返回退出APP');
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  handleAppStateChange(appState) {
+    if (appState === 'active') {
+      if (this.props.application.logInState == 1) {
+        Actions.checkGesture();
+      }
+      else {
+        Actions.setGesture();
+      }
+    }
+  }
+
   render() {
     //从reducer中获取应用的状态
     const {application, actions} = this.props;
-    const {isShowSplash} = application;
+    const {isShowSplash, logInState} = application;
+    //actions.checkLoginState();
     //是否显示闪屏
     if (isShowSplash) {
       return (
@@ -101,9 +134,10 @@ App.propTypes = {
  */
 function mapStateToProps(state) {
   return {
-       application: {
-            isShowSplash: state.application.isShowSplash,
-        },
+    application: {
+      isShowSplash: state.application.isShowSplash,
+      logInState: state.application.logInState
+    },
   }
 }
 

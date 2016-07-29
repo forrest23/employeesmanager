@@ -8,25 +8,20 @@ import {
   View,
 } from 'react-native';
 
-/**
- * 通过 react-redux 提供的 connect() 方法，将包装好的组件连接到Redux
- * 任何一个从 connect() 包装好的组件都可以得到一个 dispatch 方法作为组件的props,
- * 以及得到全局 state 中所需要的任何内容
- *
- * connect 的唯一参数是 selector。
- *
- */
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-/**
- * 加载所有action.
- * Action 是把数据从应用传送到 store 的载体。它是store数据的唯一来源。
- * 一般来说会通过 store.dispatch() 将 action 传送到 store。
- */
 import allActions from '../actions';
 
-
 import Splash from './splash';//闪屏
+
+import {
+  Scene,
+  Reducer,
+  Router,
+  Switch,
+  Modal,
+  Actions,
+} from 'react-native-router-flux';
 
 class App extends Component {
   constructor(props) {

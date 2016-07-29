@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import allActions from '../actions';
 
+import { scenes } from '../config/scenes';
+
 import Splash from './splash';//闪屏
 
 import {
@@ -22,6 +24,30 @@ import {
   Modal,
   Actions,
 } from 'react-native-router-flux';
+
+const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
+  const style = {
+    flex: 1,
+    backgroundColor: '#fff',
+    shadowColor: null,
+    shadowOffset: null,
+    shadowOpacity: null,
+    shadowRadius: null,
+  };
+  if (computedProps.isActive) {
+    style.marginTop = computedProps.hideNavBar ? 0 : 64;
+    style.marginBottom = computedProps.hideTabBar ? 0 : 50;
+  }
+  return style;
+};
+
+const reducerCreate = params => {
+  const defaultReducer = new Reducer(params);
+  return (state, action) => {
+    console.log('ACTION:', action);
+    return defaultReducer(state, action);
+  };
+};
 
 class App extends Component {
   constructor(props) {
@@ -40,18 +66,8 @@ class App extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload, {'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Router scenes={scenes}>
+      </Router>
     );
   }
 }

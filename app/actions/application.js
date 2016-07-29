@@ -23,3 +23,14 @@ export function closeSplashScreen() {
         }));
     }
 }
+
+export function showGestureScreen() {
+    // Thunk middleware 知道如何处理函数
+    // 这里把 dispatch 方法通过参数的形式传给函数，让它也能 dispatch action。
+    return (dispatch) => {
+        return Promise.resolve(dispatch({
+            type: APP.GESTURE,//将要执行的行为
+            data: false
+        }));
+    }
+}

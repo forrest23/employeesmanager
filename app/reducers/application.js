@@ -10,6 +10,7 @@ import {APP} from '../config/actionType';
 //初始化状态
 const initialState = {
     isShowSplash: true,//是否展示闪屏
+    isShowGesture: true,//是否显示手势密码
 }
 
 const actionHandle = {
@@ -17,6 +18,12 @@ const actionHandle = {
     [APP.SPLASH]: (state, action)=> {
         return Object.assign({}, state, {
             isShowSplash: action.data
+        });
+    },
+    //设置手势密码状态
+    [APP.GESTURE]: (state, action)=> {
+        return Object.assign({}, state, {
+            isShowGesture: action.data
         });
     },
 }

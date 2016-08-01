@@ -12,20 +12,38 @@ import {
     Dimensions,
     InteractionManager
 } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import allActions from '../actions';
+
+import { Actions } from 'react-native-router-flux';
 
 const maxHeight = Dimensions.get('window').height;
 const maxWidth = Dimensions.get('window').width;
 const splashImg = require('../assets/splash.png');
 
-export default class Splash extends Component {
+class Splash extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+
     componentDidMount() {
-        const {actions} = this.props;
+        const { logInState} = this.props;
         //设置三秒后，闪屏消失
         setTimeout(() => {
             //在所有交互结束后进行
             InteractionManager.runAfterInteractions(() => {
-                actions.closeSplashScreen();
+                //actions.closeSplashScreen();
+                Actions.mainPage();
+                if (logInState == "1") {
+                    Actions.checkGesture();
+                }
+                else {
+                    Actions.setGesture();
+                }
             });
+
         }, 2000);
     }
 
@@ -38,6 +56,17 @@ export default class Splash extends Component {
         );
     }
 }
-Splash.propTypes = {
-    actions: PropTypes.object.isRequired
+
+function mapStateToProps(state) {
+    return {
+       	...state.application,
+    }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(allActions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Splash)

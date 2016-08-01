@@ -4,8 +4,9 @@
 'use strict';
 
 //导入 APP 变量
-import { APP } from '../config/actionType';
-
+import * as types from '../config/actionType';
+import {createAction} from 'redux-actions';
+import realm from '../realm/user';
 /**
  * 关闭闪屏
  * 异步Action Creator
@@ -13,25 +14,29 @@ import { APP } from '../config/actionType';
  * 这时 这个action creater 就是Thunk。
  * 异步Action 不会马上把数据传递给reducer，但是一旦操作完成就会触发action的分发事件。
  */
-export function closeSplashScreen() {
-    return (dispatch) => {
-        return Promise.resolve(dispatch({
-            type: APP.SPLASH,//将要执行的行为
-            data: false
-        }));
-    }
-}
 
-export function checkLoginState() {
-   return (dispatch) => {
-        return Promise.resolve(dispatch({
-            type: APP.checkLoginState,//将要执行的行为
-            data: getSate()
-        }));
-    }
-}
+// export const closeSplashScreen = createAction(types.SPLASH, ()=> {
+// 	return false;
+// });
 
-function getSate()
-{
-    return '0';
+
+export const checkLoginState = createAction(types.CHECK_LOGIN_STATE, ()=> {
+	return   getLoginState();
+});
+
+
+//登陆状态 0 未登陆,1 已登陆未设置手势密码 2已登陆已设置手势密码
+function getLoginState() {
+    let users = realm.objects('User');
+    if (users.length < 1) {
+        return "0";
+    }
+    else {
+        if (users[0].gesture.length > 0) {
+            return "1";
+        }
+        else {
+            return "2";
+        }
+    }
 }

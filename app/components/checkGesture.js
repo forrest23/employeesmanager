@@ -10,9 +10,9 @@ import {
 
 import PasswordGesture from 'react-native-gesture-password';
 import {Actions} from "react-native-router-flux";
-//import DeviceStorage from '../utils/Storage.js'
+import realm from '../realm/user';
 
-var Password1="123";
+var Password1 = "123";
 
 class CheckGesture extends Component {
     constructor(props) {
@@ -23,11 +23,13 @@ class CheckGesture extends Component {
             status: 'normal'
         }
 
-        // DeviceStorage.get('passwordnew').then((passwordnew) => {
-        //     Password1 =passwordnew;
-        // }).catch((error) => {
-        //     console.warn(error)
-        // }).done()
+        let users = realm.objects('User');
+        if (users.length < 1) {
+            Password1= "123";
+        }
+        else {
+            Password1 =users[0].gesture;
+        }
     }
 
     onEnd(password) {

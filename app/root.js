@@ -20,22 +20,11 @@ import React , {
  */
 import {createStore , applyMiddleware} from 'redux';
 import { Provider } from 'react-redux';
-
-import reducers from './reducers';
-
-import thunk from 'redux-thunk';//运行使用dispatch函数
+import configureStore from './store/configureStore';
 
 import App from './containers/app';//容器组件
-/**
- * Redux应用只有一个单一的store。当需要拆分处理数据的逻辑时，使用reducer组合。
- * Store是把 action、reducers联系在一起的对象。它有以下职责：
- * 1.维持应用的状态
- * 2.提供 getState()方法获取state
- * 3.提供 dispatch(action) 方法更新 state
- * 4.通过 subscribe( listener ) 注册监听器
- */
-const createStoreWithMW = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMW(reducers);
+
+const store = configureStore();
 
 export default class Root extends Component{
     render() {

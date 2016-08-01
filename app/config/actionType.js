@@ -1,9 +1,9 @@
-/**
- * action / reducer的全局变量
- */
-'use strict'
 
-export const APP = {
-    'SPLASH': 'SPLASH',//闪屏
-    'checkLoginState':'checkLoginState'//手势密码
-}
+//app
+export const SPLASH = 'SPLASH';
+export const CHECK_LOGIN_STATE = 'CHECK_LOGIN_STATE';
+
+//utils
+export const TOAST = 'TOAST';
+export const OPEN_TOAST = 'OPEN_TOAST';
+export const CLOSE_TOAST = 'CLOSE_TOAST';

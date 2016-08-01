@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
     flex: 1, backgroundColor: 'transparent', justifyContent: 'center',
     alignItems: 'center',
   },
+  navBarStyle: {
+    backgroundColor: '#34b5da',
+  },
   tabBarStyle: {
     backgroundColor: '#FFFF',
   },
@@ -53,12 +56,13 @@ export const scenes = Actions.create(
     <Scene key="checkGesture"  component={CheckGesture} title="验证手势密码" />
     <Scene key="setGesture"  component={SetGesture} title="设置手势密码" />
     <Scene key="splash" component={Splash}  initial />
-    <Scene key="mainPage" tabs tabBarStyle={styles.tabBarStyle} tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
-      <Scene key="home" initial title="首页" icon={TabIcon} iconName="home">
+    <Scene key="mainPage" tabs  tabBarStyle={styles.tabBarStyle} tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
+      <Scene key="home" initial title="首页" icon={TabIcon} iconName="home" navigationBarStyle={styles.navBarStyle}>
         <Scene
           key="tab2_1"
           component={Home}
-          title="首页"
+          title="仁濟醫院"
+          titleStyle={{ color: 'white' }}
           />
       </Scene>
 

@@ -21,19 +21,19 @@ var styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#9DD6EB',
+        backgroundColor: '#d0d0d0',
     },
     slide2: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#97CAE5',
+        backgroundColor: '#d0d0d0',
     },
     slide3: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#92BBD9',
+        backgroundColor: '#d0d0d0',
     },
     text: {
         color: '#fff',

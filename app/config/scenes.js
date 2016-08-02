@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     color: 'white',
     //fontFamily: 'HiraginoSans-W6',
     fontSize: 20,
-    letterSpacing: 6
+    letterSpacing: 8
   }
 });
 

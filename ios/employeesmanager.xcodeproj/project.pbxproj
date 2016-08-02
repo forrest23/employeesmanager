@@ -28,6 +28,7 @@
 		45F09067525C4A8BA6640247 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 871B93B985384300BAE4CFB9 /* MaterialIcons.ttf */; };
 		47DC09FEDA254ABD91B27819 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEDB677CFA474A4E8F3C0D93 /* Foundation.ttf */; };
 		5A0F8980AB1041AC9AB88B4F /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2157250695DA48D794E03676 /* Ionicons.ttf */; };
+		76F7E3F91D502F1B004AE733 /* STHeiti-Light_W4.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76F7E3F81D502F1B004AE733 /* STHeiti-Light_W4.ttf */; };
 		77B4DC84D8E94CDF9B57FB09 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 286CA0B0FC1241538A3AEC75 /* libRNVectorIcons.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8598958DBA734354A953703F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2919248A7FFB4ED9B751A1D6 /* libz.tbd */; };
@@ -159,6 +160,7 @@
 		383A4D18BEDA478B90BEF55B /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
 		4376A44904F8440589971545 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		4814D747574A44A48BD0FBAB /* libc++.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		76F7E3F81D502F1B004AE733 /* STHeiti-Light_W4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "STHeiti-Light_W4.ttf"; path = "../../../../Downloads/STHeiti-Light_W4.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		871B93B985384300BAE4CFB9 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 		8D52D9705A634BE080BD8EFE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				76F7E3F81D502F1B004AE733 /* STHeiti-Light_W4.ttf */,
 				13569E6EAF4B44EF892C1BE7 /* Entypo.ttf */,
 				F6BFBAB6CEAC45DA870D6EC1 /* EvilIcons.ttf */,
 				E8D746C803C846BE8201ACB4 /* FontAwesome.ttf */,
@@ -619,6 +622,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				76F7E3F91D502F1B004AE733 /* STHeiti-Light_W4.ttf in Resources */,
 				1976822334DF421E900408A5 /* Entypo.ttf in Resources */,
 				AE33B51039FB448FA1EDFD1E /* EvilIcons.ttf in Resources */,
 				A1CA89BE765244979E134C97 /* FontAwesome.ttf in Resources */,

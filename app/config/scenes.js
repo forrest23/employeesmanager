@@ -47,9 +47,13 @@ const styles = StyleSheet.create({
   tabBarSelectedItemStyle: {
     backgroundColor: '#FFFF',
   },
+  titleStyle:{
+    color: 'white',
+    //fontFamily: 'HiraginoSans-W6',
+    fontSize:20,
+    letterSpacing:6
+  }
 });
-
-
 
 export const scenes = Actions.create(
   <Scene key="root" hideNavBar hideTabBar>
@@ -61,34 +65,37 @@ export const scenes = Actions.create(
         <Scene
           key="tab2_1"
           component={Home}
-          title="仁濟醫院"
-          titleStyle={{ color: 'white' }}
+          title="仁济医院"
+          titleStyle={styles.titleStyle}
           />
       </Scene>
 
-      <Scene key="tab4"  title="日程" icon={TabIcon} iconName="calendar">
+      <Scene key="tab4"  title="日程" icon={TabIcon} iconName="calendar" navigationBarStyle={styles.navBarStyle}>
         <Scene
           key="tab3_2"
           component={Calendar}
           title='日程'
+          titleStyle={styles.titleStyle}
           renderRightButton={() => <Right />}
           />
       </Scene>
 
-      <Scene key="tab3"  title="消息" icon={TabIcon} iconName="envelope-o">
+      <Scene key="tab3"  title="消息" icon={TabIcon} iconName="envelope-o" navigationBarStyle={styles.navBarStyle}>
         <Scene
           key="tab3_1"
           component={Message}
           title='消息'
+          titleStyle={styles.titleStyle}
           renderRightButton={() => <Right />}
           />
       </Scene>
 
-      <Scene key="tab5"  title="我的" icon={TabIcon} iconName="user">
+      <Scene key="tab5"  title="我的" icon={TabIcon} iconName="user" navigationBarStyle={styles.navBarStyle}>
         <Scene
           key="tab5_1"
           component={Me}
           title="我的"
+          titleStyle={styles.titleStyle}
           />
       </Scene>
 

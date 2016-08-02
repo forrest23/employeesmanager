@@ -7,9 +7,11 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
-    View
+    View,
+    Image
 } from 'react-native';
 import Swiper from 'react-native-swiper'
+import Swiper1 from '../assets/swiper1.png';
 
 var styles = StyleSheet.create({
     wrapper: {
@@ -36,15 +38,18 @@ var styles = StyleSheet.create({
         color: '#fff',
         fontSize: 30,
         fontWeight: 'bold',
-    }
+    },
+    resizeMode: {
+        height: 237,
+    },
 })
 
 export default class Calendar extends Component {
     render() {
         return (
-            <Swiper style={styles.wrapper} showsButtons={true} height={237}>
+            <Swiper style={styles.wrapper} showsButtons={false} height={237}>
                 <View style={styles.slide1}>
-                    <Text style={styles.text}>Hello Swiper</Text>
+                    <Image source={Swiper1} resizeMode={Image.resizeMode.cover} style={styles.resizeMode}/>
                 </View>
                 <View style={styles.slide2}>
                     <Text style={styles.text}>Beautiful</Text>

@@ -9,9 +9,10 @@ export default class Home extends Component {
 
     return (
       <View style={styles.container}>
-        <Swiper></Swiper>
-
-        <Text>首页</Text>
+      <View style={{marginTop:5}}>
+       <Swiper></Swiper>
+      </View>
+         <Text>首页</Text>
       </View>
     );
   }

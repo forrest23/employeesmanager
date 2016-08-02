@@ -1,12 +1,16 @@
 'use strict';
 import React, { Component } from 'react';
-import { Text, View ,StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
+import Swiper from '../components/swiper';
+
 
 export default class Home extends Component {
   render() {
- 
+
     return (
       <View style={styles.container}>
+        <Swiper></Swiper>
+
         <Text>首页</Text>
       </View>
     );
@@ -18,6 +22,6 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
     flex: 1,
-    justifyContent: 'center',
+    //justifyContent: 'center',
   },
 });

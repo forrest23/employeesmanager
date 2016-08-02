@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
   tabBarSelectedItemStyle: {
     backgroundColor: '#FFFF',
   },
-  titleStyle:{
+  titleStyle: {
     color: 'white',
     //fontFamily: 'HiraginoSans-W6',
-    fontSize:20,
-    letterSpacing:6
+    fontSize: 20,
+    letterSpacing: 6
   }
 });
 

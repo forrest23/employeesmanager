@@ -1,8 +1,8 @@
 'use strict';
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, Image, TouchableOpacity, ScrollView, Platform} from 'react-native';
+import { Text, View, StyleSheet, Dimensions, Image, TouchableOpacity, ScrollView, Platform } from 'react-native';
 import Swiper from '../components/swiper';
-
+import {Actions} from 'react-native-router-flux';
 
 export default class Home extends Component {
   constructor(props) {
@@ -42,11 +42,11 @@ export default class Home extends Component {
       );
     });
 
-    var secondRowViews = this.state.secondRows.map(function (r, j, arry) {
+    var secondRowViews = this.state.secondRows.map(function (r, j) {
       if (j == 0 || j == 5) {
         return (
           <View style={{ flex: 1 }} key={j}>
-            <TouchableOpacity style={[styles.row2]}>
+            <TouchableOpacity style={[styles.row2]} onPress={() => goto(r.text) }>
               <View ><Image style={styles.image3} source={r.image}></Image></View>
               <View ><Text style={styles.text3}>{r.text}</Text></View>
             </TouchableOpacity>
@@ -55,7 +55,7 @@ export default class Home extends Component {
       }
       else {
         return (
-          <TouchableOpacity style={[styles.row, { width: thirdSize }]} key={j}>
+          <TouchableOpacity style={[styles.row, { width: thirdSize, height: 64, borderBottomWidth: 1, borderColor: '#d0d0d0' }]} onPress={() => goto(r.text) } key={j}>
             <View style={styles.flex_1}><Image style={styles.image2} source={r.image}></Image></View>
             <View style={styles.flex_1}><Text style={styles.text2}>{r.text}</Text></View>
           </TouchableOpacity>
@@ -89,12 +89,49 @@ export default class Home extends Component {
             {secondRowViews[9]}
           </View>
         </View>
+
+        <View style={styles.block2}>
+          {secondRowViews[5]}
+          <View style={styles.row3}>
+            {secondRowViews[6]}
+            {secondRowViews[7]}
+            {secondRowViews[8]}
+            {secondRowViews[9]}
+          </View>
+        </View>
+
+        <View style={styles.block2}>
+          {secondRowViews[5]}
+          <View style={styles.row3}>
+            {secondRowViews[6]}
+            {secondRowViews[7]}
+            {secondRowViews[8]}
+            {secondRowViews[9]}
+          </View>
+        </View>
+
+        <View style={styles.block3}></View>
       </ScrollView>
     );
   }
 }
 
+function goto(text) {
+  switch (text) {
+    case "患者管理":
+      Actions.patientManager({ hideNavBar: false, hideTabBar: true });
+      break;
+    case "先进评选":
+      Actions.vote({ hideNavBar: false, hideTabBar: true });
+      break;
+    case "危急值":
+      Actions.critical({ hideNavBar: false, hideTabBar: true });
+      break;
 
+    default:
+      break;
+  }
+}
 
 var styles = StyleSheet.create({
   container: {
@@ -121,9 +158,6 @@ var styles = StyleSheet.create({
   row3: {
     flex: 2,
     flexDirection: 'row',
-    height: 63,
-    borderBottomWidth: 1,
-    borderColor: '#d0d0d0',
     flexWrap: 'wrap'
   },
   image: {
@@ -144,7 +178,7 @@ var styles = StyleSheet.create({
     resizeMode: Image.resizeMode.contain
   },
   block1: {
-    height: 80,
+    height: 70,
     marginTop: 6,
     flexDirection: 'row',
     backgroundColor: '#ffffff',
@@ -153,6 +187,11 @@ var styles = StyleSheet.create({
     height: 126,
     marginTop: 6,
     flexDirection: 'row',
+    backgroundColor: '#ffffff',
+  },
+  block3: {
+    marginTop: 6,
+    height: 55,
     backgroundColor: '#ffffff',
   },
   text: {

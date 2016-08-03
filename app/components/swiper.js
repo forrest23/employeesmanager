@@ -41,7 +41,7 @@ var styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     resizeMode: {
-        resizeMode: Image.resizeMode.contain
+        resizeMode: Image.resizeMode.contain,
     },
 })
 
@@ -49,7 +49,7 @@ export default class Calendar extends Component {
     render() {
         var width = Dimensions.get('window').width;
         return (
-            <Swiper style={styles.wrapper} showsButtons={false} height={139}>
+            <Swiper style={styles.wrapper} showsButtons={false} autoplay={true} showsPagination={false} height={139}>
                 <View style={styles.slide1}>
                     <Image source={Swiper1}  style={[styles.resizeMode,{ width: width }]}/>
                 </View>

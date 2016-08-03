@@ -18,7 +18,13 @@ import Splash from '../containers/splash';//日程
 import CheckGesture from '../components/checkGesture';//验证手势密码
 import SetGesture from '../components/setGesture';//设置手势密码
 
+import PatientManager from '../containers/patientManager';//患者管理
+import Vote from '../containers/vote';//先进评选
+import Critical from '../containers/critical';//危急值
+
 import TabIcon from '../components/tabIcon';
+import NavBar from '../components/navBar';
+
 
 const Right = () => (
   <Text
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
     color: 'white',
     //fontFamily: 'HiraginoSans-W6',
     fontSize: 20,
-    letterSpacing: 8
+    //letterSpacing: 8
   }
 });
 
@@ -59,9 +65,12 @@ export const scenes = Actions.create(
   <Scene key="root" hideNavBar hideTabBar>
     <Scene key="checkGesture"  component={CheckGesture} title="验证手势密码" />
     <Scene key="setGesture"  component={SetGesture} title="设置手势密码" />
+    <Scene key="patientManager"  component={PatientManager} title="患者管理"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
+    <Scene key="vote"  component={Vote} title="先进评选"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
+    <Scene key="critical"  component={Critical} title="危急值"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="splash" component={Splash}  initial />
     <Scene key="mainPage" tabs  tabBarStyle={styles.tabBarStyle} tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
-      <Scene key="home" initial title="首页" icon={TabIcon} iconName="home" navigationBarStyle={styles.navBarStyle}>
+      <Scene key="home" initial title="首页" icon={TabIcon} iconName="home" navBar={NavBar}>
         <Scene
           key="tab2_1"
           component={Home}

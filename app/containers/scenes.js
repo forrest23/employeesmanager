@@ -19,8 +19,6 @@ import CheckGesture from '../components/checkGesture';//验证手势密码
 import SetGesture from '../components/setGesture';//设置手势密码
 
 import PatientManager from '../containers/patientManager';//患者管理
-import InPatientList from '../containers/inPatientList';//患者列表
-
 import Vote from '../containers/vote';//先进评选
 import Critical from '../containers/critical';//危急值
 
@@ -67,7 +65,6 @@ export const scenes = Actions.create(
   <Scene key="root" hideNavBar hideTabBar>
     <Scene key="checkGesture"  component={CheckGesture} title="验证手势密码" />
     <Scene key="setGesture"  component={SetGesture} title="设置手势密码" />
-    <Scene key="inPatientList"  component={InPatientList} title="患者列表"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="patientManager"  component={PatientManager} title="患者管理"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="vote"  component={Vote} title="先进评选"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="critical"  component={Critical} title="危急值"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>

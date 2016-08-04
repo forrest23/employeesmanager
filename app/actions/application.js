@@ -21,7 +21,7 @@ import realm from '../realm/user';
 
 
 export const checkLoginState = createAction(types.CHECK_LOGIN_STATE, ()=> {
-	return   getLoginState();
+	return getLoginState();
 });
 
 

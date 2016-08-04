@@ -18,11 +18,11 @@ export default class PatientManager extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity style={styles.flex_1} onPress={() => pageJump('我的预约') }>
+          <TouchableOpacity style={[styles.flex_1, styles.borderRight]} onPress={() => pageJump('我的预约') }>
             <Image style={styles.image} source={reservationImg}>
             </Image><Text style={styles.text}>我的预约</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.flex_1} onPress={() => pageJump('我的门诊') }>
+          <TouchableOpacity style={[styles.flex_1, styles.borderRight]} onPress={() => pageJump('我的门诊') }>
             <Image style={styles.image} source={outPatientImg}></Image>
             <Text style={styles.text}>我的门诊</Text>
           </TouchableOpacity>
@@ -46,7 +46,11 @@ export default class PatientManager extends Component {
             </TouchableOpacity>
             <TouchableOpacity style={[styles.part_right]}>
               <View style={styles.rowText}>
-                <Text style={[styles.nameText, styles.flex3]}>罗德军</Text>
+                <View style={styles.textView}>
+                  <Text style={[styles.nameText]}>周瑞发</Text>
+                  <View style={[styles.sign]}><Text style={[styles.signText]}>门诊</Text></View>
+                </View>
+
                 <Text style={[styles.nameText, styles.flex1]}>男</Text>
                 <Text style={[styles.nameText, styles.flex1]}>53岁</Text>
               </View>
@@ -63,7 +67,11 @@ export default class PatientManager extends Component {
             </TouchableOpacity>
             <TouchableOpacity style={[styles.part_right]}>
               <View style={styles.rowText}>
-                <Text style={[styles.nameText, styles.flex3]}>张云张云张云</Text>
+                <View style={styles.textView}>
+                  <Text style={[styles.nameText]}>张云</Text>
+                  <View style={[styles.sign]}><Text style={[styles.signText]}>住院</Text></View>
+                </View>
+
                 <Text style={[styles.nameText, styles.flex1]}>女</Text>
                 <Text style={[styles.nameText, styles.flex1]}>53岁</Text>
               </View>
@@ -75,14 +83,14 @@ export default class PatientManager extends Component {
           </View>
 
         </View>
-      </View>
+      </View >
     );
   }
 }
 
 var styles = StyleSheet.create({
   container: {
-    backgroundColor: '#d0d0d0',
+    backgroundColor: '#e5e5e5',
     flex: 1,
     marginTop: Platform.OS === 'ios' ? 64 : 51,
   },
@@ -93,12 +101,15 @@ var styles = StyleSheet.create({
   },
   flex_1: {
     flex: 1,
-    borderLeftWidth: 1,
-    borderColor: '#d0d0d0',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 8,
     marginBottom: 8
+  },
+  borderRight:
+  {
+    borderRightWidth: 1,
+    borderColor: '#b2b2b2',
   },
   image: {
     width: 34,
@@ -113,13 +124,13 @@ var styles = StyleSheet.create({
   text: {
     marginTop: 8,
     fontSize: 17,
-    color: '#34b5da'
+    color: '#01a5d4'
     //fontFamily: 'HiraginoSans-W6',
   },
   text2: {
     marginLeft: 10,
     fontSize: 19,
-    color: 'red'
+    color: '#e94e5f'
     //fontFamily: 'HiraginoSans-W6',
   },
   bottom:
@@ -132,7 +143,7 @@ var styles = StyleSheet.create({
   {
     height: 45,
     borderBottomWidth: 1,
-    borderColor: '#d0d0d0',
+    borderColor: '#666',
   },
   title:
   {
@@ -143,7 +154,7 @@ var styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    borderColor: '#ccc',
+    borderColor: '#bfbfbf',
     borderBottomWidth: 1,
     height: 80,
     alignItems: 'center',
@@ -153,7 +164,7 @@ var styles = StyleSheet.create({
     marginLeft: 12,
   },
   part_right: {
-    flex: 3,
+    flex: 4,
     marginLeft: 0,
   },
   patinetImage:
@@ -164,11 +175,12 @@ var styles = StyleSheet.create({
   nameText:
   {
     fontSize: 18,
+    color: '#404040',
   },
   infoText:
   {
     fontSize: 16,
-    color:'#8E8E8E',
+    color: '#737373',
   },
   rowText: {
     flexDirection: 'row',
@@ -187,6 +199,24 @@ var styles = StyleSheet.create({
   flex3:
   {
     flex: 3,
+  },
+  sign: {
+    marginLeft: 4,
+    marginTop: Platform.OS === 'ios' ? 0 : 4,
+    width: 35,
+    height: 18,
+    backgroundColor: '#eb6877',
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  signText: {
+    fontSize: 14,
+    color: '#ffffff'
+  },
+  textView: {
+    flex: 3,
+    flexDirection: 'row',
   }
 });
 

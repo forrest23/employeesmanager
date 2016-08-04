@@ -67,7 +67,7 @@ export const scenes = Actions.create(
   <Scene key="root" hideNavBar hideTabBar>
     <Scene key="checkGesture"  component={CheckGesture} title="验证手势密码" />
     <Scene key="setGesture"  component={SetGesture} title="设置手势密码" />
-    <Scene key="inPatientList"  component={InPatientList} title="患者列表"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
+    <Scene key="inPatientList"  component={InPatientList} title="住院患者"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="patientManager"  component={PatientManager} title="患者管理"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="vote"  component={Vote} title="先进评选"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="critical"  component={Critical} title="危急值"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>

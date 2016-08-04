@@ -8,7 +8,7 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import io.realm.react.RealmReactPackage; // the db
+import io.realm.react.RealmReactPackage; // 添加这行
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +25,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new RealmReactPackage()
+          new RealmReactPackage() // 添加这行
       );
     }
   };

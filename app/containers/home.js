@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions, Image, TouchableOpacity, ScrollView, Platform } from 'react-native';
 import Swiper from '../components/swiper';
 import {Actions} from 'react-native-router-flux';
+import {pageJump} from '../config/pageJump';
 
 export default class Home extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ export default class Home extends Component {
       if (j == 0 || j == 5) {
         return (
           <View style={{ flex: 1 }} key={j}>
-            <TouchableOpacity style={[styles.row2]} onPress={() => goto(r.text) }>
+            <TouchableOpacity style={[styles.row2]} onPress={() => pageJump(r.text) }>
               <View ><Image style={styles.image3} source={r.image}></Image></View>
               <View ><Text style={styles.text3}>{r.text}</Text></View>
             </TouchableOpacity>
@@ -55,7 +56,7 @@ export default class Home extends Component {
       }
       else {
         return (
-          <TouchableOpacity style={[styles.row, { width: thirdSize, height: 64, borderBottomWidth: 1, borderColor: '#d0d0d0' }]} onPress={() => goto(r.text) } key={j}>
+          <TouchableOpacity style={[styles.row, { width: thirdSize, height: 64, borderBottomWidth: 1, borderColor: '#d0d0d0' }]} onPress={() => pageJump(r.text) } key={j}>
             <View style={styles.flex_1}><Image style={styles.image2} source={r.image}></Image></View>
             <View style={styles.flex_1}><Text style={styles.text2}>{r.text}</Text></View>
           </TouchableOpacity>
@@ -113,23 +114,6 @@ export default class Home extends Component {
         <View style={styles.block3}></View>
       </ScrollView>
     );
-  }
-}
-
-function goto(text) {
-  switch (text) {
-    case "患者管理":
-      Actions.patientManager({ hideNavBar: false, hideTabBar: true });
-      break;
-    case "先进评选":
-      Actions.vote({ hideNavBar: false, hideTabBar: true });
-      break;
-    case "危急值":
-      Actions.critical({ hideNavBar: false, hideTabBar: true });
-      break;
-
-    default:
-      break;
   }
 }
 

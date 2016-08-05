@@ -1,24 +1,24 @@
+//先进评选
+
 'use strict';
 import React, { Component } from 'react';
-import { Text, View ,StyleSheet } from 'react-native';
+import { View, StyleSheet, WebView , Platform} from 'react-native';
 
-export default class Calendar
- extends Component {
-  render() {
- 
-    return (
-      <View style={styles.container}>
-        <Text>日程</Text>
-      </View>
-    );
-  }
+export default class Calendar extends Component {
+    render() {
+        return (
+            <WebView
+                source={{ uri: 'http://192.168.20.47:8010/App/scheduler.html' }}
+                style={styles.container}
+                />
+        );
+    }
 }
 
 var styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    flex: 1,
-    justifyContent: 'center',
-  },
+    container: {
+        marginTop: Platform.OS === 'ios' ? 64 : 51,
+        marginBottom: 50,
+    },
 });
+

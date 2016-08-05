@@ -21,6 +21,9 @@ export function pageJump(title) {
         case "我的住院":
             Actions.inPatientList({ hideNavBar: false, hideTabBar: true });
             break;
+        case "住院患者明细":
+            Actions.inPatientDetail({ hideNavBar: false, hideTabBar: true });
+            break;
         default:
             break;
     }

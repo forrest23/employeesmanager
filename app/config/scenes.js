@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Platform,
 } from 'react-native';
 
 import {Actions, Scene, Router} from 'react-native-router-flux';
@@ -20,6 +21,8 @@ import SetGesture from '../components/setGesture';//设置手势密码
 
 import PatientManager from '../containers/patientManager';//患者管理
 import InPatientList from '../containers/inPatientList';//患者列表
+import InPatientDetail from '../containers/inPatientDetail';//患者明细
+
 
 import Vote from '../containers/vote';//先进评选
 import Critical from '../containers/critical';//危急值
@@ -40,6 +43,42 @@ const Right = () => (
     }}
     >消息</Text>
 );
+
+const InPatientListRight = () => (
+  <View style={{
+    height: 37,
+    position: 'absolute',
+    bottom: 4,
+    right: 0,
+  }}>
+    <Text
+      style={{
+        width: 40,
+        height: 37,
+        position: 'absolute',
+        bottom: Platform.OS === 'ios' ? 4 : -5,
+        right: 0,
+        color: '#ffffff',
+        fontSize: 16,
+        paddingTop: Platform.OS === 'ios' ? 12 : 0,
+      }}
+      >搜索</Text>
+
+    <Text
+      style={{
+        width: 40,
+        height: 37,
+        position: 'absolute',
+        bottom: Platform.OS === 'ios' ? 4 : -5,
+        right: 50,
+        color: '#ffffff',
+        fontSize: 16,
+        paddingTop: Platform.OS === 'ios' ? 12 : 0,
+      }}
+      >排序</Text>
+  </View>
+);
+
 
 const styles = StyleSheet.create({
   container: {
@@ -67,8 +106,10 @@ export const scenes = Actions.create(
   <Scene key="root" hideNavBar hideTabBar>
     <Scene key="checkGesture"  component={CheckGesture} title="验证手势密码" />
     <Scene key="setGesture"  component={SetGesture} title="设置手势密码" />
-    <Scene key="inPatientList"  component={InPatientList} title="住院患者"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
+    <Scene key="inPatientList"  component={InPatientList} title="住院患者"  navigationBarStyle={styles.navBarStyle}
+      titleStyle={styles.titleStyle} renderRightButton={() => <InPatientListRight/>}/>
     <Scene key="patientManager"  component={PatientManager} title="患者管理"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
+    <Scene key="inPatientDetail"  component={InPatientDetail} title="患者明细"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="vote"  component={Vote} title="先进评选"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="critical"  component={Critical} title="危急值"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="splash" component={Splash}  initial />
@@ -88,7 +129,6 @@ export const scenes = Actions.create(
           component={Calendar}
           title='日程'
           titleStyle={styles.titleStyle}
-          renderRightButton={() => <Right />}
           />
       </Scene>
 
@@ -98,7 +138,6 @@ export const scenes = Actions.create(
           component={Message}
           title='消息'
           titleStyle={styles.titleStyle}
-          renderRightButton={() => <Right />}
           />
       </Scene>
 

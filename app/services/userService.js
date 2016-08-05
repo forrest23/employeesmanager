@@ -22,7 +22,9 @@ export function updateUserInfo(userName,token,paraInfo) {
         var parainfo=JSON.parse(paraInfo).Result;
         if(parainfo){
             // 创建一个用户对象
-            realm.create('UserInfo', {Id: "1", Name: parainfo.Employee.Name.toString(),Code: parainfo.Employee.Code.toString(), UserName: userName.toString(),Token:token.toString()});
+            realm.create('UserInfo', {Id: "1", Name: parainfo.Employee.Name.toString(),
+                Code: parainfo.Employee.Code.toString(), UserName: userName.toString(),
+                Token:token.toString()},true);
 
 
         }
@@ -34,7 +36,7 @@ export function updateUserInfo(userName,token,paraInfo) {
         parainfo.moudle[0].Menus.forEach(function (item) {
 
             realm.create('UserMenu', {Id: item.Id.toString(), Icon: item.Icon.toString(),
-                Name: item.Name.toString(),SortId:item.SortId.toString(),Actived:item.Actived.toString()});
+                Name: item.Name.toString(),SortId:item.SortId.toString(),Actived:item.Actived.toString()},true);
         })
 
         let userDept = realm.objects('UserDept');
@@ -42,11 +44,24 @@ export function updateUserInfo(userName,token,paraInfo) {
 
         // 创建科室对象
         parainfo.DeptPermissions.forEach(function (item) {
-            realm.create('UserDept', {DeptCode: item.DeptCode.toString(), DeptName: item.DeptName.toString()});
+            realm.create('UserDept', {DeptCode: item.DeptCode.toString(), DeptName: item.DeptName.toString()},true);
         })
     });
     return true;
 }
-// function updateUserMenume() {
-//
-// }
+export function checkLoginInfo(){
+     let userInfo = realm.objects('UserInfo');
+       if(userInfo){
+           return userInfo[0];
+       }else{
+           return ;
+       }
+
+}
+export function clearUserInfo(){
+    realm.write(()=> {
+        let userInfo = realm.objects('UserInfo');
+        realm.delete(userInfo);
+    });
+    return;
+}

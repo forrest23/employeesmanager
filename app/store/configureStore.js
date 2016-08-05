@@ -20,9 +20,9 @@ let middlewares = [
 	thunkMiddleware,
 	promiseMiddleware,
 	asyncActionCallbackMiddleware,
-	minPendingTimeMiddleware,
+	// minPendingTimeMiddleware,
 	utilsMiddleware,
-	syncReducerToAsyncStorage
+	// syncReducerToAsyncStorage
 ];
 
 

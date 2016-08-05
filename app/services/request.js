@@ -1,9 +1,8 @@
 import qs from 'query-string';
-import config from '../configs';
 
 
-let domain ='https://cnodejs.org';
-let	apiPath ='/api/v1';
+let domain ='https://professional.fdekyy.com.cn/';
+let	apiPath ='';
 
 const urlPrefix = domain + apiPath;
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
@@ -44,21 +43,28 @@ export function get(url, params) {
 }
 
 
-export function post(url, body) {
+export function post(url, body,type) {
 	url = urlPrefix + url;
+	let contentType="application/json";
 
 	if (isDebuggingInChrome) {
 		console.info(`POST: `, url);
 		console.info(`Body: `, body);
 	}
-
+	if(type!=undefined&&type!="json"){
+		body=body;
+		contentType="application/x-www-form-urlencoded";
+	}else{
+		body=JSON.stringify(body);
+	}
 	return fetch(url, {
 		method: 'POST',
 		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
+			'Content-Type': contentType,
+			'dataType': 'json',
 		},
-		body: JSON.stringify(body)
+		body:body
+
 	})
 		.then(filterStatus)
 		.then(filterJSON);

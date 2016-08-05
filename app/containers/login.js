@@ -9,7 +9,7 @@ import {
     View,
     TouchableHighlight,
 } from 'react-native';
-
+import * as UserInfo from '../services/token';
 import allActions from '../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -39,8 +39,8 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state={value: {
-            username:'15202108909',
-            password:'123456',
+            username:UserInfo.getUserName(),
+            password:'',
             verifyCode:'',
         }
         }

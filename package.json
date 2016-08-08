@@ -10,6 +10,7 @@
     "lodash": "^4.14.1",
     "query-string": "^4.2.2",
     "react": "15.2.1",
+    "react-addons-pure-render-mixin": "^15.1.0",
     "react-native": "0.30.0",
     "react-native-blur": "^1.0.0",
     "react-native-gesture-password": "^0.2.0",
@@ -25,6 +26,7 @@
     "redux-logger": "^2.6.1",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
-    "remote-redux-devtools": "^0.3.4"
+    "remote-redux-devtools": "^0.3.4",
+    "tcomb-form-native": "^0.6.0"
   }
 }

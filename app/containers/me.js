@@ -1,71 +1,70 @@
 'use strict';
 import React, {Component} from 'react';
-import {View,TouchableHighlight, Dimensions,Platform, StyleSheet, Text, Image, TouchableOpacity, ActivityIndicatorIOS, LayoutAnimation} from 'react-native';
+import {View, TouchableHighlight, Dimensions, Platform, StyleSheet, Text, Image, TouchableOpacity, ActivityIndicatorIOS, LayoutAnimation} from 'react-native';
 
 import allActions from '../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 const FontAwesome = require('react-native-vector-icons/FontAwesome');
-let {height,width}=Dimensions.get('window');
-import {Actions,ActionConst} from 'react-native-router-flux';
+let {height, width} = Dimensions.get('window');
+import {Actions, ActionConst} from 'react-native-router-flux';
 import * as UserInfo from '../services/token'
 
 
-export default class Me extends Component {
+class Me extends Component {
   constructor(props) {
     super(props);
 
   }
   componentDidMount() {
     this.props.actions.CheckLoginState();
-    if(!this.props.userInfo.Name){
+    if (!this.props.userInfo.Name) {
       Actions.login();
     }
   }
 
   _logoutUser() {
     this.props.actions.Logout();
-
   }
   render() {
 
     return (
-        <View style={styles.container}>
-          <View style={[styles.bgWall,{backgroundColor:'#FFFFFF'}]}>
-            <View style={styles.imgRow}>
-              <TouchableOpacity>
-                <Image
-                    style={styles.authorImg}
-                    source={require('../assets/hzgl.png')}>
-                </Image>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <Text style={styles.textRow}>
-              {UserInfo.getName()}
-              </Text>
-              </View>
-            <View style={{marginTop:20}} >
-              <TouchableHighlight style={styles.button} onPress={()=>{
-                this._logoutUser();
-              }}
-                                  underlayColor='#99d9f4' >
-                <Text style={styles.textRow} >退出登录</Text>
-              </TouchableHighlight>
-            </View>
+      <View style={styles.container}>
+        <View style={[styles.bgWall, { backgroundColor: '#FFFFFF' }]}>
+          <View style={styles.imgRow}>
+            <TouchableOpacity>
+              <Image
+                style={styles.authorImg}
+                source={require('../assets/hzgl.png') }>
+              </Image>
+            </TouchableOpacity>
           </View>
-          <View style={[styles.bgWall,{marginTop:10}]} >
-            <TouchableHighlight underlayColor='#3498DB' >
-              <View  style={styles.listRow}>
-                <View style={styles.listRowLeft}>
-                  <FontAwesome name={'commenting'} color="#404040" size={35}/>
-                  <Text style={{ color:'#404040'}}>个人消息</Text>
-                </View>
-                <FontAwesome name={'chevron-right'} color="#404040" size={35}/>
-              </View>
+          <View>
+            <Text style={styles.textRow}>
+              {UserInfo.getName() }
+            </Text>
+          </View>
+          <View style={{ marginTop: 20 }} >
+            <TouchableHighlight style={styles.button} onPress={() => {
+              this._logoutUser();
+            } }
+              underlayColor='#99d9f4' >
+              <Text style={styles.textRow} >退出登录</Text>
             </TouchableHighlight>
           </View>
         </View>
+        <View style={[styles.bgWall, { marginTop: 10 }]} >
+          <TouchableHighlight underlayColor='#3498DB' >
+            <View  style={styles.listRow}>
+              <View style={styles.listRowLeft}>
+                <FontAwesome name={'commenting'} color="#404040" size={35}/>
+                <Text style={{ color: '#404040' }}>个人消息</Text>
+              </View>
+              <FontAwesome name={'chevron-right'} color="#404040" size={35}/>
+            </View>
+          </TouchableHighlight>
+        </View>
+      </View>
     )
   }
 }
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: Platform.OS === 'ios' ? 64 : 51,
-    backgroundColor:'#e5e5e5',
+    backgroundColor: '#e5e5e5',
   },
   bgWall: {
     height: bgWallHeight,
@@ -89,11 +88,11 @@ const styles = StyleSheet.create({
   },
   imgRow: {
     flexDirection: 'row',
-     marginTop:15,
-     paddingBottom:10,
+    marginTop: 15,
+    paddingBottom: 10,
 
   },
-  textRow:{
+  textRow: {
     flexDirection: 'row',
     alignItems: 'center',
     // color: 'rgba(255,255,255,0.6)'
@@ -116,36 +115,35 @@ const styles = StyleSheet.create({
     borderColor: '#34b5da',
     borderWidth: 1,
     borderRadius: 8,
-    paddingLeft:40,
-    paddingRight:40,
+    paddingLeft: 40,
+    paddingRight: 40,
     marginBottom: 10,
     justifyContent: 'center',
 
   },
-  listRow:{
-    width:width,
+  listRow: {
+    width: width,
     flexDirection: 'row',
     alignItems: 'center',
-    height:40,
-    marginBottom:2,
-    backgroundColor:'#FFFFFF',
-    alignSelf:'stretch',
-    paddingLeft:5,
+    height: 40,
+    marginBottom: 2,
+    backgroundColor: '#FFFFFF',
+    alignSelf: 'stretch',
+    paddingLeft: 5,
     justifyContent: 'space-between',
   },
-  listRowLeft:{
+  listRowLeft: {
     flexDirection: 'row',
-    alignSelf:'stretch',
+    alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  listRowRight:{
+  listRowRight: {
     alignItems: 'center',
     justifyContent: 'center',
   }
 });
 function mapStateToProps(state) {
-
   return {
     ...state
   }

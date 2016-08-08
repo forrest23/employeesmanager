@@ -11,9 +11,11 @@ import { combineReducers } from 'redux';
 import application from './application';
 import login from './login';
 import userInfo from './userInfo';
+import inPatient from './inPatient';
 const reducer = combineReducers({
     application,
     login,
     userInfo,
+    inPatient,
 });
 export default reducer;

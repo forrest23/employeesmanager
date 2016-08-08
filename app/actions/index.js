@@ -7,10 +7,12 @@
 import * as  application from './application';
 import * as  login from './login';
 import * as  utils from './utils';
+import * as  inPatient from './inPatient';
 
 export default 
 {
     ...application,
     ...login,
     ...utils,
+    ...inPatient,
 };

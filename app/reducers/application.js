@@ -1,7 +1,6 @@
 'use strict'
 
 //引用reducer生成器
-import createReducer from '../utils/createReducer';
 import * as types from '../config/actionType';
 
 //初始化状态

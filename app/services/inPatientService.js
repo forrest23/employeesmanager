@@ -1,19 +1,14 @@
 import * as requestService from './request';
 import {getToken, setToken} from './token';
-
+import { format } from '../utils';
+import config from '../config';
 
 function filterData(data) {
 	return data.data;
 }
 
-export function getInPatientByDepart(departId) {
-	return requestService.get('/topic/' + id)
-		.then(filterData)
-		.then(inPatient=> {
-			if (inPatient && inPatient.id) {
-				return inPatient
-			}
-			throw 'getInPatientByDepart Error'
-		})
+export function getInPatientList(doctor, depts, division) {
+	return requestService.get(config.getInPatientList)
+		.then((data)=>data);
 }
 

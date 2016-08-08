@@ -7,46 +7,33 @@ const { width } = Dimensions.get('window');
 
 
 class InPatientListRow extends Component {
-	static propTypes = {
-		topic: PropTypes.object,
-		footer: PropTypes.node,
-		onPress: PropTypes.func
-	};
-
-
-	static defaultProps = {
-		onPress: () => null
-	};
-
-
 	render() {
-		const { topic } = this.props;
-
+		const {inPatient} = this.props;
 
 		return (
 			<TouchableHighlight
-				onPress={() => { this.props.onPress(topic) } }
+				onPress={() => { this.props.onPress(inPatient) } }
 				underlayColor='#3498DB'
-				key={topic.id}>
+				key={inPatient.BedNo}>
 
 				<View style={ styles.listRow }>
 					<View style={styles.part_left}>
-						<View style={[styles.bed]}><Text style={[styles.bedText]}>+1</Text></View>
+						<View style={[styles.bed]}><Text style={[styles.bedText]}>{inPatient.BedNo}</Text></View>
 					</View>
 
 					<View style={[styles.part_right]}>
 						<View style={styles.rowText}>
 							<View style={styles.textView}>
-								<Text style={[styles.nameText]}>周瑞发</Text>
-								<View style={[styles.sign]}><Text style={[styles.signText]}>Ⅲ级</Text></View>
+								<Text style={[styles.nameText]}>{inPatient.Name}</Text>
+								<View style={[styles.sign]}><Text style={[styles.signText]}>{inPatient.Sex}</Text></View>
 							</View>
 
-							<Text style={[styles.nameText, styles.flex3]}>脑梗死</Text>
+							<Text style={[styles.nameText, styles.flex3]}>{inPatient.Diagnosis}</Text>
 						</View>
 						<View style={styles.rowText}>
-							<Text style={[styles.infoText, styles.flex1]}>女</Text>
-							<Text style={[styles.infoText, styles.flex1]}>53岁</Text>
-							<Text style={[styles.infoText, styles.flex2]}>2016-07-20</Text>
+							<Text style={[styles.infoText, styles.flex1]}>{inPatient.Sex}</Text>
+							<Text style={[styles.infoText, styles.flex1]}>{inPatient.Age}</Text>
+							<Text style={[styles.infoText, styles.flex2]}>{inPatient.InHosDate}</Text>
 						</View>
 					</View>
 				</View>

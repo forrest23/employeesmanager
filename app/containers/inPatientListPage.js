@@ -1,17 +1,18 @@
 //住院患者列表
 
 'use strict';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Dimensions, Text, View, StyleSheet, Platform, TouchableOpacity, Picker, PickerIOS, LayoutAnimation, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from '../components/modal';
 import InPatientList from '../components/inPatient/inPatientList';
+import connectComponent from '../utils/connectComponent';
 
 const maleImg = require('../assets/male.png');
 const femaleImg = require('../assets/female.png');
 var halfSize = Dimensions.get('window').width;
 
-export default class inPatientListPage extends Component {
+class inPatientListPage extends Component {
     constructor(props) {
         super(props);
         this.tabs = {
@@ -30,6 +31,10 @@ export default class inPatientListPage extends Component {
             isPickerShow: false,
             dirty: false
         };
+    }
+
+    componentDidMount() {
+        this.props.actions.getInPatientList("all", "", "");
     }
 
     _onPickerValueChange(tab) {
@@ -115,16 +120,8 @@ export default class inPatientListPage extends Component {
         }
     }
 
-    _renderPatinetList() {
-        return (
-            <InPatientList router={this.props.router}
-                key={item}
-                />
-        );
-    }
-
     render() {
-
+        const {actions,inPatientList} = this.props;
         const modal = (
             <Modal onPressBackdrop={() => { this.setState({ isPickerShow: false }); } } style={styles.modal}>
                 <View style={styles.pickerIOS}>
@@ -146,50 +143,10 @@ export default class inPatientListPage extends Component {
         return (
             <View style={styles.container}>
                 {this._renderPicker() }
-
-                <View style={styles.list}>
-                    <View style={[styles.listRow]}>
-                        <TouchableOpacity style={[styles.part_left]}>
-                            <View style={[styles.bed]}><Text style={[styles.bedText]}>+1</Text></View>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={[styles.part_right]}>
-                            <View style={styles.rowText}>
-                                <View style={styles.textView}>
-                                    <Text style={[styles.nameText]}>周瑞发</Text>
-                                    <View style={[styles.sign]}><Text style={[styles.signText]}>Ⅲ级</Text></View>
-                                </View>
-
-                                <Text style={[styles.nameText, styles.flex3]}>脑梗死</Text>
-                            </View>
-                            <View style={styles.rowText}>
-                                <Text style={[styles.infoText, styles.flex1]}>女</Text>
-                                <Text style={[styles.infoText, styles.flex1]}>53岁</Text>
-                                <Text style={[styles.infoText, styles.flex2]}>2016-07-20</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={[styles.listRow]}>
-                        <TouchableOpacity style={[styles.part_left]}>
-                            <View style={[styles.bed]}><Text style={[styles.bedText]}>04</Text></View>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={[styles.part_right]}>
-                            <View style={styles.rowText}>
-                                <View style={styles.textView}>
-                                    <Text style={[styles.nameText]}>杨威</Text>
-                                    <View style={[styles.sign]}><Text style={[styles.signText]}>Ⅰ级</Text></View>
-                                </View>
-
-                                <Text style={[styles.nameText, styles.flex3]}>消化道内部大出血</Text>
-                            </View>
-                            <View style={styles.rowText}>
-                                <Text style={[styles.infoText, styles.flex1]}>男</Text>
-                                <Text style={[styles.infoText, styles.flex1]}>45岁</Text>
-                                <Text style={[styles.infoText, styles.flex2]}>2016-07-01</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                <View style={{flex:1}}>
+                  <InPatientList data={inPatientList} getInPatientList={actions.getInPatientList}/>
                 </View>
+              
                 {this.state.isPickerShow && modal}
             </View>
         );
@@ -356,3 +313,10 @@ var styles = StyleSheet.create({
         color: '#34b5da'
     }
 });
+
+export const LayoutComponent = inPatientListPage;
+export function mapStateToProps(state) {
+    return {
+        ...state.inPatient,
+    };
+}

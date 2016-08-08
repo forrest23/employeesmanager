@@ -24,11 +24,11 @@ class CheckGesture extends Component {
         }
 
         let users = realm.objects('UserInfo');
-        if (users.length < 1) {
-            Password1= "123";
+        if (users.length == 1) {
+            Password1 = users[0].Gesture;
         }
         else {
-            Password1 =users[0].gesture;
+            Actions.login();
         }
     }
 

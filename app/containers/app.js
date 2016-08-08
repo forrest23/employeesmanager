@@ -17,6 +17,7 @@ import allActions from '../actions';
 import { scenes } from '../config/scenes';
 import {toastShort} from '../utils/toast'; //提示框
 import Splash from './splash';//闪屏
+import * as UserInfo from '../services/token';
 
 import { Actions, Router } from 'react-native-router-flux';
 
@@ -33,7 +34,7 @@ class App extends Component {
     BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton);
 
     const {actions} = this.props;
-    actions.checkLoginState();
+    actions.CheckLoginState();
   }
 
   componentWillUnmount() {
@@ -55,12 +56,15 @@ class App extends Component {
   handleAppStateChange(appState) {
     if (appState === 'active') {
       const {actions} = this.props;
-      actions.checkLoginState();
-      if (this.props.logInState == "1") {
-        Actions.checkGesture();
+      actions.CheckLoginState();
+      if (UserInfo.getToken() == "") {
+        Actions.login();
+      }
+      else if (UserInfo.getGesture() == "") {
+        Actions.setGesture();
       }
       else {
-        Actions.setGesture();
+        Actions.checkGesture();
       }
     }
   }
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-       	...state.application,
+       	...state,
   }
 }
 

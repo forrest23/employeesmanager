@@ -23,7 +23,7 @@ class CheckGesture extends Component {
             status: 'normal'
         }
 
-        let users = realm.objects('User');
+        let users = realm.objects('UserInfo');
         if (users.length < 1) {
             Password1= "123";
         }

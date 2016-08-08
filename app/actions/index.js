@@ -5,8 +5,12 @@
  */
 'use strict';
 import * as  application from './application';
+import * as  login from './login';
+import * as  utils from './utils';
 
 export default 
 {
-    ...application
+    ...application,
+    ...login,
+    ...utils,
 };

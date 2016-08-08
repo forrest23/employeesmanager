@@ -9,8 +9,11 @@
 import { combineReducers } from 'redux';
 
 import application from './application';
-
+import login from './login';
+import userInfo from './userInfo';
 const reducer = combineReducers({
-    application
+    application,
+    login,
+    userInfo,
 });
 export default reducer;

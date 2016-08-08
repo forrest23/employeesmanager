@@ -5,12 +5,13 @@ import React, { Component } from 'react';
 import { Dimensions, Text, View, StyleSheet, Platform, TouchableOpacity, Picker, PickerIOS, LayoutAnimation, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from '../components/modal';
+import InPatientList from '../components/inPatient/inPatientList';
 
 const maleImg = require('../assets/male.png');
 const femaleImg = require('../assets/female.png');
 var halfSize = Dimensions.get('window').width;
 
-export default class InPatientList extends Component {
+export default class inPatientListPage extends Component {
     constructor(props) {
         super(props);
         this.tabs = {
@@ -112,6 +113,14 @@ export default class InPatientList extends Component {
             )
 
         }
+    }
+
+    _renderPatinetList() {
+        return (
+            <InPatientList router={this.props.router}
+                key={item}
+                />
+        );
     }
 
     render() {
@@ -343,7 +352,7 @@ var styles = StyleSheet.create({
     },
     modelText:
     {
-        marginRight:5,
+        marginRight: 5,
         color: '#34b5da'
     }
 });

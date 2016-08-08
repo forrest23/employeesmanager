@@ -20,12 +20,14 @@ import CheckGesture from '../components/checkGesture';//验证手势密码
 import SetGesture from '../components/setGesture';//设置手势密码
 
 import PatientManager from '../containers/patientManager';//患者管理
-import InPatientList from '../containers/inPatientList';//患者列表
+import InPatientListPage from '../containers/inPatientListPage';//患者列表
 import InPatientDetail from '../containers/inPatientDetail';//患者明细
 
 
 import Vote from '../containers/vote';//先进评选
 import Critical from '../containers/critical';//危急值
+import Formula from '../containers/formula';//医学公式
+
 
 import TabIcon from '../components/tabIcon';
 import NavBar from '../components/navBar';
@@ -106,12 +108,12 @@ export const scenes = Actions.create(
   <Scene key="root" hideNavBar hideTabBar>
     <Scene key="checkGesture"  component={CheckGesture} title="验证手势密码" />
     <Scene key="setGesture"  component={SetGesture} title="设置手势密码" />
-    <Scene key="inPatientList"  component={InPatientList} title="住院患者"  navigationBarStyle={styles.navBarStyle}
-      titleStyle={styles.titleStyle} renderRightButton={() => <InPatientListRight/>}/>
+    <Scene key="inPatientListPage"  component={InPatientListPage} title="住院患者"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle} renderRightButton={() => <InPatientListRight/>}/>
     <Scene key="patientManager"  component={PatientManager} title="患者管理"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="inPatientDetail"  component={InPatientDetail} title="患者明细"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="vote"  component={Vote} title="先进评选"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="critical"  component={Critical} title="危急值"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
+    <Scene key="formula"  component={Formula} title="医学公式"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="splash" component={Splash}  initial />
     <Scene key="mainPage" tabs  tabBarStyle={styles.tabBarStyle} tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
       <Scene key="home" initial title="首页" icon={TabIcon} iconName="home" navBar={NavBar}>

@@ -1,0 +1,1 @@
+function MDCalc(z){if(pref=="si"){h2o=6.27}if(pref=="us"){h2o=47}value=z.fio2/100*(z.atm-h2o)-z.paco2/.8;ans=value-z.pao2;Answer(Round(ans,1));if(z.age){if(pref=="si"){Text("抱歉，在国际单位制下，肺泡－动脉分压差不能用年龄来估计。")}else{val=z.age/4+4;Answer2(Round(val,1))}}}

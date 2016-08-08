@@ -3,12 +3,13 @@
 'use strict';
 import React, { Component } from 'react';
 import { View, StyleSheet, WebView , Platform} from 'react-native';
+import config from '../config';
 
 export default class Message extends Component {
     render() {
         return (
             <WebView
-                source={{ uri: 'http://192.168.20.47:8010/App/message.html' }}
+                source={{ uri: config.messageUrl }}
                 style={styles.container}
                 />
         );

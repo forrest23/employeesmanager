@@ -8,10 +8,12 @@ export default class InPatientDetail extends Component {
 
         return (
             <View style={styles.container}>
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', height: 200, backgroundColor: "#fefefe" }}>
-                    <View style={{ flexDirection: 'row',flex: 1, backgroundColor: "#bbaaaa" }}>
-                    </View>
-                    <View style={{ flexDirection: 'row',flex: 1, backgroundColor: "#aabbaa" }}>
+                <View style={{ flexDirection: 'row', height: 200, backgroundColor: "#fefefe", padding: 20 }}>
+                    <View style={{ flex: 1, flexDirection: 'column', padding: 15, backgroundColor: "#eeeeee" }}>
+                        <View style={{ flex: 1, backgroundColor: "#bbaaaa" }}>
+                        </View>
+                        <View style={{ flex: 1, backgroundColor: "#aabbaa" }}>
+                        </View>
                     </View>
                 </View>
             </View>

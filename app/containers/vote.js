@@ -2,13 +2,14 @@
 
 'use strict';
 import React, { Component } from 'react';
-import { View, StyleSheet, WebView , Platform} from 'react-native';
+import { View, StyleSheet, WebView, Platform} from 'react-native';
+import config from '../config';
 
-export default class Me extends Component {
+export default class Vote extends Component {
     render() {
         return (
             <WebView
-                source={{ uri: 'http://professional.xinhuamed.com.cn:8090/ProfessionalWeb/Critical/CriticalList?id=2&agentid=3&flag=0&userid=9999&username=%E7%94%98%E5%AF%85&userdepart=0' }}
+                source={{ uri: config.domain + config.voteUrl }}
                 style={styles.container}
                 />
         );
@@ -20,4 +21,3 @@ var styles = StyleSheet.create({
         marginTop: Platform.OS === 'ios' ? 64 : 51,
     },
 });
-

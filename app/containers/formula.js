@@ -1,17 +1,19 @@
-//危急值
+//医学公式
 
 'use strict';
 import React, { Component } from 'react';
-import { View, StyleSheet, WebView, Platform} from 'react-native';
-import config from '../config';
+import { View, StyleSheet, WebView , Platform} from 'react-native';
 
-export default class Critical extends Component {
+const testHtml = require('../assets/formulaHtml/test.html');
+
+export default class Formula extends Component {
     render() {
         return (
             <WebView
                 startInLoadingState={true}
                 javaScriptEnabled={true}
-                source={{ uri: config.domain + config.criticalUrl }}
+                scalesPageToFit={true}
+                source={testHtml}
                 style={styles.container}
                 />
         );

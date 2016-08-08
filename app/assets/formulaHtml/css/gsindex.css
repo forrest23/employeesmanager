@@ -1,0 +1,126 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0 auto; padding:0;}
+body{ font:12px SimSun;}
+.left{ float:left;}
+.right{ float:right;}
+.clear{ clear:both;}
+ul,li{ list-style:none;}
+input,select{ vertical-align:middle;}
+a{ text-decoration:none;}
+img{ border:menu none;}
+.center{ text-align:center;}
+.txt_r{ text-align:right;}
+.txt-indent{text-indent:2em;}
+.clearfix:after {
+    content: ".";             
+	display: block;            
+    height: 0; 
+	font-size:0;
+    clear: both;              
+    visibility: hidden;	     
+}
+.clearfix {display: inline-block;}   
+* html .clearfix {height:1%;}
+.clearfix {display: block;}
+.bg{ background:url(bg.png) no-repeat 10000px 10000px;}
+.btn{ border:medium none; cursor:pointer;}
+.mr15{ margin-right:15px;}
+.pt20{ padding-top:20px;}
+.pt40{ padding-top:40px;}
+.mr40{ margin-right:40px;}
+
+
+/*通用*/
+.f_page_menu { width:960px;}
+.f_page_menu_l { float:left; margin:15px 0;}
+.f_page_menu_l img { width:268px; height:68px;}
+.f_page_menu_r { float:left; margin:52px 0 0; margin-left:40px;}
+.f_page_menu_r ul li { float:left;}
+.f_page_menu_r ul li a {text-decoration:underline; width:74px; height:47px; font:16px/47px '微软雅黑'; color:#008cd6; display: inline-block; text-align:center;}
+.f_page_menu_r ul li a:hover, .f_page_menu_r ul li a.sele { color:#ffffff; text-decoration: none; background:url(../../images/menu_bg.jpg) no-repeat; width:74px; height:47px;}
+.f_page_border { border-top:6px solid #008cd6; height:32px;}
+.f_page_cont {width:962px; margin-bottom:20px;}
+.border_top_01 { background:url(../../images/border_top_01.jpg) no-repeat; width:962px; height:10px;}
+.f_page_cont_top {height:60px; border-top:medium none; background:url(../img/gsbg_03.png); font:15px/20px '微软雅黑'; color:#333333; padding-left:15px; margin-left:1px;}
+.f_page_cont_box { padding:25px 45px; min-height:500px; font:14px/20px '微软雅黑'; color:#666666;margin-left:1px; border-left: 1px  solid #E5E5E5}
+.f_page_cont_box table { width:100%;}
+.f_page_cont_box table tr td { width:50%; padding:20px 0; }
+.f_page_cont_box table tr td a { font-size:16px; color:#008cd6;}
+
+/*首页*/
+.f_logo{ padding-top:135px; text-align:center;}
+.f_page_nav{padding-bottom:20px; text-align:center;}
+.f_page_nav a{ font:16px/26px '微软雅黑'; color:#008cd6; margin-right:28px; text-decoration:none; border-bottom:1px solid #008cd6;}
+.f_page_nav a:hover,.f_page_nav a.on{ color:#333333; border:medium none;}
+.f_page_search{ text-align:center;}
+.f_input_one{ width:480px; height:16px; border:1px solid #80c6eb; font:14px/16px '微软雅黑'; color#000000; padding:13px 0 13px 10px; outline:none;}
+.f_btn_one{ width:108px; height:44px; background-color:#80c6eb; cursor:pointer; border:medium none; font:18px/44px '微软雅黑'; color:#ffffff;}
+.f_page_btm { font:14px/30px '宋体'; color:#999999; text-align:center; margin:20px 0;}
+.f_min_h { min-height:700px; border:medium none;}
+
+/*检索无结果*/
+.blue { color:#008cd6;}
+.f_sorry_line { width:750px;}
+.p70 { padding:70px 0 0;}
+.sorry_txt { padding-top:10px; line-height:30px; color:#999999;}
+
+/*检索结果*/
+.f_results_line { font-size:14px; padding:16px 0;}
+.f_results_line p a { font-size:16px; color:#008cd6;}
+.f_mtop { margin-top:10px;}
+.f_pbtm { padding-bottom:10px; padding-left:13px; text-align:left;}
+.f_txt { width:380px; height:16px; /*line-height:16px;*/}
+.f_btn_txt { width:90px; height:34px; line-height:34px;}
+
+/*系统*/
+.no_border { border:medium none;}
+.f_page_cont_l { float:left; width:224px;}
+.border_top_02 { background:url(../../images/border_top_02.jpg) no-repeat; width:225px; height:10px;}
+.f_page_cont_r { float:right; width:735px;}
+.border_top_03 { background:url(../../images/border_top_03.jpg) no-repeat; width:724px; height:10px;}
+.f_page_cont_nav { font:16px/40px '微软雅黑'; text-align:center; border-top:medium none; background: #fff}
+.f_page_cont_nav ul li a { color:#008cd6; width:222px; height:40px; display:inline-block;}
+.f_page_cont_nav ul li a:hover, .f_page_cont_nav ul li a.f_nav_sele { color:#333333; background-color:#b2dcf3;}
+.f_m0 { margin:0;}
+
+
+/*详细*/
+.f_wid729 { width:729px;}
+.f_wid222 { width:222px;}
+.border_top_04 { background:url(../../images/border_top_04.jpg) no-repeat; width:730px; height:10px;}
+.color3 { color:#333333;}
+.f_detail_box { padding:20px 45px 50px ; text-align:left;}
+.f_detail_line { height:50px; width:100%; font:16px/50px '微软雅黑'; color:#666666;}
+.f_detail_line label { width:155px; padding-left:15px; display:inline-block;}
+.f_detail_line input { width:280px; height:30px; border:1px solid #d2d2d2; padding-left:5px; margin-right:15px; line-height:30px;  font-family:'微软雅黑';}
+.bg_color { background-color:#f2f2f2;}
+.border_btm { border-bottom:1px solid #cccccc; margin-bottom:10px;}
+.f_detail_line .sele_box { width:74px; height:28px; border:1px solid #d2d2d2; line-height:28px; font-family:'微软雅黑'; padding-left:10px; margin-top:10px;}
+.f_detail_box2 { padding:0 15px;}
+.f_border { border:1px solid #d1d1d1;}
+.f_detail_tit { border-bottom:1px solid #d3dbe1; height:40px; font:bold 14px/40px '宋体'; color:#008cd6; margin-top:10px;}
+.f_detail_tit a { color:#008cd6; font-weight:normal;}
+.f_detail_line2 { padding:15px 0 0;}
+.f_detail_line2 ul , .f_detail_line2 li {list-style: disc inside; color:#666666;}
+.f_detail_line2 li { height:24px; overflow:hidden;}
+.f_detail_line2 ul li a { font:12px/24px '宋体'; color:#666666; width:180px;}
+.f_detail_line2 .img_box { width:180px; height:50px;}
+.f_detail_line2 .img_box2 { width:156px; height:156px;}
+.f_center { text-align:center;}
+.f_txt2 { text-align:left; margin:10px 0;}
+
+.post { width:100%; font:16px/26px '微软雅黑'; color:#666666; text-align:left; margin-top:20px;}
+.post select { width:74px; height:28px; border:1px solid #d2d2d2; line-height:28px; font-family:'微软雅黑'; padding-left:10px; margin:12px 0 ; text-align:left; float:right;}
+h2 {font:normal 20px/50px '微软雅黑'; color:#008cd6; float:left;}
+.post table { width:100%; clear:both;}
+.post table tr td { width:50%;  padding:10px 0 10px 15px;}
+.post table tr td select { width:80%; margin:0; float:none;}
+.post table tr td input[type="button"] {width:100px; height:26px; background-color:#80c6eb; cursor:pointer; border:medium none; font:16px/26px '微软雅黑'; color:#ffffff;}
+.post table tr td input[type="text"] { width:60%; height:16px; border:1px solid #d2d2d2; padding:5px; line-height:16px;  font-family:'微软雅黑'; outline: none;}
+.extra { text-align:center; padding:10px 0;}
+.extra img { width:579px; height:437px;}
+.post table .answer { background-color:#f2f2f2;}
+
+.post table tr .short60 input[type="text"]{width:36%;}

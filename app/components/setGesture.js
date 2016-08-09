@@ -13,56 +13,57 @@ import {Actions} from "react-native-router-flux";
 import realm from '../realm/user';
 import * as UserInfo from '../services/token';
 
-var Password1 = '';
+var InputPassword = '';
 
 class SetGesture extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            message: '请设置手势密码',
+            message: '请绘制手势密码',
             status: 'normal'
         }
     }
 
     onEnd(password) {
         const {actions} = this.props;
-        if (Password1 === '') {
+        if (InputPassword === '') {
             // The first password
-            Password1 = password;
+            if (password.length <= 4) {
+                this.setState({
+                    status: 'normal',
+                    message: '至少连接4g个点，请重新绘制'
+                });
+                return;
+            }
+            InputPassword = password;
 
             this.setState({
                 status: 'normal',
-                message: '请再输入一次'
+                message: '请再次绘制手势密码'
             });
         } else {
             // The second password
-            if (password === Password1) {
+            if (password === InputPassword) {
                 this.setState({
                     status: 'right',
-                    message: '设置成功'
+                    message: '绘制成功'
                 });
-                actions.SetUserGesture(Password1);
-                // realm.write(() => {
-                //     realm.create('UserInfo', { Id: '1', Gesture: Password1 }, true);
-                // });
-                // UserInfo.setGesture(Password1);
-
-                Password1 = '';
-                // your codes to close this view
+                actions.SetUserGesture(InputPassword);
+                InputPassword = '';
 
                 Actions.pop();
             } else {
                 this.setState({
                     status: 'wrong',
-                    message: '两次输入不一致，请重新输入'
+                    message: '与上次绘制不一样，请重新绘制'
                 });
             }
         }
     }
 
     onStart() {
-        if (Password1 === '') {
+        if (InputPassword === '') {
             this.setState({
                 message: '请设置手势密码'
             });

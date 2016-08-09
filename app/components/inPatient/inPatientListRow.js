@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {View, StyleSheet, Text, Image, TouchableHighlight, Dimensions, Platform} from 'react-native';
 import { parseImgUrl } from '../../utils';
+import { Actions } from 'react-native-router-flux';
 
 const { width } = Dimensions.get('window');
 
@@ -31,7 +32,7 @@ class InPatientListRow extends Component {
 
         return (
             <TouchableHighlight
-                onPress={() => { this.props.onPress(inPatient) } }
+                onPress={() => {Actions.inPatientDetail({inPatient})}}
                 underlayColor='#3498DB'
                 key={inPatient.BedNo}>
 

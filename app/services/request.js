@@ -1,7 +1,7 @@
 import qs from 'query-string';
 import * as tokenService from './token';
 
-let domain = 'http://professional.xinhuamed.com.cn:8090/';
+let domain = 'https://professional.fdekyy.com.cn';
 let apiPath = '';
 
 const urlPrefix = domain + apiPath;

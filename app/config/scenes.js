@@ -30,7 +30,7 @@ import Vote from '../containers/vote';//先进评选
 import Critical from '../containers/critical';//危急值
 import Formula from '../containers/formula';//医学公式
 
-
+import Tip from '../components/tip';//错误提示框
 import TabIcon from '../components/tabIcon';
 import NavBar from '../components/navBar';
 
@@ -110,9 +110,10 @@ const styles = StyleSheet.create({
 
 export const scenes = Actions.create(
   <Scene key="root" hideNavBar hideTabBar>
+    <Scene key="tip"  component={Tip} title="提示" />
     <Scene key="checkGesture"  component={CheckGesture} title="验证手势密码" />
     <Scene key="setGesture"  component={SetGestureComponent} title="设置手势密码" />
-     <Scene key="login"  component={Login} title="登陆" />
+    <Scene key="login"  component={Login} title="登陆" />
     <Scene key="inPatientListPage"  component={InPatientListPageComponent} title="住院患者"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle} renderRightButton={() => <InPatientListRight/>}/>
     <Scene key="patientManager"  component={PatientManager} title="患者管理"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="inPatientDetail"  component={InPatientDetail} title="患者明细"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>

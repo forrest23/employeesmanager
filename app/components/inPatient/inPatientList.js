@@ -55,7 +55,7 @@ class InPatientList extends Component {
 				pagingEnabled={false}
 				removeClippedSubviews={true}
 				dataSource={this.state.ds}
-				renderRow={this._renderRow.bind(this) }
+				renderRow={this._renderRow.bind(this)}
 				refreshControl={
 					<RefreshControl
 						refreshing={pending}

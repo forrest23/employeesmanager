@@ -110,8 +110,8 @@ var options = {
     fields: {
         username: {
             label: '用户名',
-            placeholder: '请输入您的账户名',
-            error: '用户名不能未空',
+            placeholder: '请输入用户名',
+            error: '用户名不能为空',
             help: help,
             stylesheet: stylesheet
         },
@@ -121,7 +121,7 @@ var options = {
             placeholder: '请输入密码',
             maxLength: 12,
             minLength: 4,
-            error: '密码必须4-12位',
+            error: '密码长度必须为4-12位',
             stylesheet: stylesheet,
             help: help2,
         },

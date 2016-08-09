@@ -37,13 +37,13 @@ class Splash extends Component {
             InteractionManager.runAfterInteractions(() => {
                 Actions.mainPage();
                 if (UserInfo.getToken() == "") {
-                    Actions.login();
+                   Actions.login({ hideNavBar: true, hideTabBar: true });
                 }
                 else if (UserInfo.getGesture() == "") {
-                    Actions.setGesture();
+                    Actions.setGesture({ hideNavBar: true, hideTabBar: true });
                 }
                 else {
-                    Actions.checkGesture();
+                    Actions.checkGesture({ hideNavBar: true, hideTabBar: true });
                 }
             });
 

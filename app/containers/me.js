@@ -18,8 +18,8 @@ class Me extends Component {
   }
   componentDidMount() {
     this.props.actions.CheckLoginState();
-    if (!this.props.userInfo.Name) {
-      Actions.login();
+    if (UserInfo.getToken() == "") {
+      Actions.login({ hideNavBar: true, hideTabBar: true });
     }
   }
 
@@ -70,12 +70,12 @@ class Me extends Component {
         <View>
 
           <View style={{ marginTop: 20 }} >
-          <TouchableHighlight style={styles.button} onPress={() => {
-          this._logoutUser();
-          } }
-          underlayColor='#99d9f4' >
-          <Text style={styles.textRow} >退出登录</Text>
-          </TouchableHighlight>
+            <TouchableHighlight style={styles.button} onPress={() => {
+              this._logoutUser();
+            } }
+              underlayColor='#99d9f4' >
+              <Text style={styles.textRow} >退出登录</Text>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
 
   },
   textRow: {
-    fontSize:17,
+    fontSize: 17,
     color: '#404040'
   },
   iconWrapper: {
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     // borderRadius: 8,
     justifyContent: 'center',
-alignItems:'center',
+    alignItems: 'center',
   },
   listRow: {
     width: width,
@@ -151,9 +151,9 @@ alignItems:'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  ListRowText:{
+  ListRowText: {
     color: '#404040',
-    fontSize:17
+    fontSize: 17
   }
 });
 function mapStateToProps(state) {

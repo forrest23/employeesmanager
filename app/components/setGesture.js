@@ -31,8 +31,8 @@ class SetGesture extends Component {
             // The first password
             if (password.length <= 4) {
                 this.setState({
-                    status: 'normal',
-                    message: '至少连接4g个点，请重新绘制'
+                    status: 'wrong',
+                    message: '至少连接4个点，请重新绘制'
                 });
                 return;
             }
@@ -65,11 +65,13 @@ class SetGesture extends Component {
     onStart() {
         if (InputPassword === '') {
             this.setState({
-                message: '请设置手势密码'
+                status: 'normal',
+                message: '请绘制手势密码'
             });
         } else {
             this.setState({
-                message: '请再输入一次'
+                status: 'normal',
+                message: '请再次绘制手势密码'
             });
         }
     }

@@ -9,6 +9,8 @@ export default class Calendar extends Component {
   render() {
     return (
       <WebView
+        startInLoadingState={true}
+        javaScriptEnabled={true}
         source={{ uri: config.calendarUrl }}
         style={styles.container}
         />

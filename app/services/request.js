@@ -1,10 +1,10 @@
 import qs from 'query-string';
 import * as tokenService from './token';
+import config from '../config';
 
-let domain = 'https://professional.fdekyy.com.cn';
 let apiPath = '';
 
-const urlPrefix = domain + apiPath;
+const urlPrefix = config.domain + apiPath;
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 
 

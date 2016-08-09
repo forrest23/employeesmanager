@@ -17,7 +17,7 @@ export const Login = createAction(types.LOGIN, async (userName, userPwd, ValidNu
                     CheckLoginState();
                     if (UserInfo.getGesture() == "") {
                         Actions.pop();
-                        Actions.setGesture();
+                        Actions.setGesture({ hideNavBar: true, hideTabBar: true });
                     }
                     else {
                         Actions.pop();
@@ -75,6 +75,6 @@ export const Logout = createAction(types.LOGOUT, () => {
     //退出只清除token
     UserInfo.setToken("");
     userService.setUserToken("");
-    Actions.login();
+    Actions.login({ hideNavBar: true, hideTabBar: true });
     return;
 });

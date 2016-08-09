@@ -5,7 +5,8 @@ import {
     AppRegistry,
     StyleSheet,
     Text,
-    View
+    View,
+    Alert
 } from 'react-native';
 
 import PasswordGesture from 'react-native-gesture-password';
@@ -26,7 +27,7 @@ class CheckGesture extends Component {
 
         InputPassword = UserInfo.getGesture();
         if (InputPassword == "") {
-            Actions.login();
+            Actions.login({ hideNavBar: true, hideTabBar: true });
         }
     }
 
@@ -36,14 +37,22 @@ class CheckGesture extends Component {
                 status: 'right',
                 message: '登陆成功'
             });
-
+            InputCount = 5;
             Actions.pop();
         } else {
             InputCount -= 1;
             if (InputCount <= 0) {
-                Actions.tip("连续输错5次，为了您的账户安全，请重新登录");
-                Actions.pop();
-                Actions.login();
+                const {actions} = this.props;
+                Alert.alert('温馨提示', '连续输错5次，为了您的账户安全，请重新登录', [
+                    {
+                        text: '确定', onPress: () => {
+                            Actions.pop();
+                            InputCount = 5;
+                            actions.Logout();
+                            Actions.login({ hideNavBar: true, hideTabBar: true });
+                        }
+                    }
+                ])
             }
             this.setState({
                 status: 'wrong',

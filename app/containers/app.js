@@ -58,13 +58,13 @@ class App extends Component {
       const {actions} = this.props;
       actions.CheckLoginState();
       if (UserInfo.getToken() == "") {
-        Actions.login();
+        Actions.login({ hideNavBar: true, hideTabBar: true });
       }
       else if (UserInfo.getGesture() == "") {
-        Actions.setGesture();
+        Actions.setGesture({ hideNavBar: true, hideTabBar: true });
       }
       else {
-        Actions.checkGesture();
+        Actions.checkGesture({ hideNavBar: true, hideTabBar: true });
       }
     }
   }

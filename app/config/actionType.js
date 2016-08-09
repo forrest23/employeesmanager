@@ -13,6 +13,9 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const SETLOGINLOADING='SETLOGINLOADING';
 export const CHECKLOGINSTATE='CHECKLOGINSTATE';
+//gesture
+export const SETUSERGESTURE='SETUSERGESTURE';
+
 
 //inPatient
 export const GET_INPATIENT_LIST = 'GET_INPATIENT_LIST';

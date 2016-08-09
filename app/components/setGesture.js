@@ -26,6 +26,7 @@ class SetGesture extends Component {
     }
 
     onEnd(password) {
+        const {actions} = this.props;
         if (Password1 === '') {
             // The first password
             Password1 = password;
@@ -41,10 +42,11 @@ class SetGesture extends Component {
                     status: 'right',
                     message: '设置成功'
                 });
-                realm.write(() => {
-                    realm.create('UserInfo', { Id: '1', Gesture: Password1 }, true);
-                });
-                UserInfo.setGesture(Password1);
+                actions.SetUserGesture(Password1);
+                // realm.write(() => {
+                //     realm.create('UserInfo', { Id: '1', Gesture: Password1 }, true);
+                // });
+                // UserInfo.setGesture(Password1);
 
                 Password1 = '';
                 // your codes to close this view
@@ -88,4 +90,10 @@ class SetGesture extends Component {
     }
 }
 
-export default SetGesture;
+
+export const LayoutComponent = SetGesture;
+export function mapStateToProps(state) {
+    return {
+        ...state.userInfo,
+    };
+}

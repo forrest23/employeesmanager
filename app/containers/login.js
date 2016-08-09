@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     ImageIcon: {
         width: 20,
         height: 20,
-        resizeMode: 'contain'
+        resizeMode: 'cover'
     },
     textBox: {
         backgroundColor: '#FFFFFF',

@@ -54,6 +54,7 @@ export const CheckLoginState = createAction(types.CHECKLOGINSTATE, () => {
         UserInfo.setName(userInfo.Name);
         UserInfo.setUserName(userInfo.UserName);
         UserInfo.setToken(userInfo.Token);
+        UserInfo.setGesture(userInfo.Gesture);
         return {
             Name: userInfo.Name,       //姓名
             Code: userInfo.Code,        //工号
@@ -63,9 +64,17 @@ export const CheckLoginState = createAction(types.CHECKLOGINSTATE, () => {
         }
     }
 });
+export const SetUserGesture = createAction(types.SETUSERGESTURE, (gesture) => {
+    userService.setUserGesture(gesture);
+    UserInfo.setGesture(gesture);
+    return {
+        Gesture: gesture
+    }
+});
 export const Logout = createAction(types.LOGOUT, () => {
-    //userService.clearUserInfo();
-    UserInfo.ClearAll();
+    //退出只清除token
+    UserInfo.setToken("");
+    userService.setUserToken("");
     Actions.login();
     return;
 });

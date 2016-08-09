@@ -19,7 +19,7 @@ import Login from '../containers/login';//日程
 
 
 import CheckGesture from '../components/checkGesture';//验证手势密码
-import SetGesture from '../components/setGesture';//设置手势密码
+import * as SetGesture from '../components/setGesture';//设置手势密码
 
 import PatientManager from '../containers/patientManager';//患者管理
 import * as InPatientListPage from '../containers/inPatientListPage';//患者列表
@@ -34,6 +34,7 @@ import Formula from '../containers/formula';//医学公式
 import TabIcon from '../components/tabIcon';
 import NavBar from '../components/navBar';
 
+const SetGestureComponent = connectComponent(SetGesture);
 const InPatientListPageComponent = connectComponent(InPatientListPage);
 
 const Right = () => (
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
 export const scenes = Actions.create(
   <Scene key="root" hideNavBar hideTabBar>
     <Scene key="checkGesture"  component={CheckGesture} title="验证手势密码" />
-    <Scene key="setGesture"  component={SetGesture} title="设置手势密码" />
+    <Scene key="setGesture"  component={SetGestureComponent} title="设置手势密码" />
      <Scene key="login"  component={Login} title="登陆" />
     <Scene key="inPatientListPage"  component={InPatientListPageComponent} title="住院患者"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle} renderRightButton={() => <InPatientListRight/>}/>
     <Scene key="patientManager"  component={PatientManager} title="患者管理"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>

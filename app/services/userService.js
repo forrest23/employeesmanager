@@ -73,8 +73,19 @@ export function checkLoginInfo() {
     } else {
         return;
     }
-
 }
+export function setUserGesture(gesture) {
+    realm.write(() => {
+        realm.create('UserInfo', { Id: '1', Gesture: gesture }, true);
+    });
+}
+
+export function setUserToken(token) {
+    realm.write(() => {
+        realm.create('UserInfo', { Id: '1', Token: token }, true);
+    });
+}
+
 export function clearUserInfo() {
     realm.write(() => {
         let userInfo = realm.objects('UserInfo');

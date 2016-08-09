@@ -2,12 +2,11 @@
  * Created by ArmyKing on 16/8/3.
  */
 export function getToken() {
-    return global.token || "";
+    return global.Token || "";
 }
 
-
 export function setToken(token) {
-    global.token = token;
+    global.Token = token;
 }
 export function getUserName() {
     return global.UserName || "";
@@ -34,9 +33,4 @@ export function setName(Name) {
 }
 export function setGesture(Gesture) {
     global.Gesture = Gesture;
-}
-export function ClearAll() {
-    //global.Name = "";
-    //global.Code = "";
-    global.Token = "";
 }

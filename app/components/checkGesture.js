@@ -10,9 +10,9 @@ import {
 
 import PasswordGesture from 'react-native-gesture-password';
 import {Actions} from "react-native-router-flux";
-import realm from '../realm/user';
+import * as UserInfo from '../services/token';
 
-var Password1 = "123";
+var Password1 = "";
 
 class CheckGesture extends Component {
     constructor(props) {
@@ -23,11 +23,8 @@ class CheckGesture extends Component {
             status: 'normal'
         }
 
-        let users = realm.objects('UserInfo');
-        if (users.length == 1) {
-            Password1 = users[0].Gesture;
-        }
-        else {
+        Password1 = UserInfo.getGesture();
+        if (Password1 == "") {
             Actions.login();
         }
     }

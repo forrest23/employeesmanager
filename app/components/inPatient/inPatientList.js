@@ -67,5 +67,4 @@ class InPatientList extends Component {
 		)
 	}
 }
-
 export default InPatientList;

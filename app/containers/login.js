@@ -15,6 +15,7 @@ import * as UserInfo from '../services/token';
 import allActions from '../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as Totas from '../utils/toast'
 var _ = require('lodash');
 const maxWidth = Dimensions.get('window').width;
 const FontAwesome = require('react-native-vector-icons/FontAwesome');
@@ -163,6 +164,10 @@ class Login extends Component {
             this.props.actions.Login(value.username, value.password, value.verifyCode || '');
             this.props.actions.SetLoginLoading(true);
 
+        }else if(this.refs.form.validate().errors.length >0){
+            let message=options.fields[this.refs.form.validate().firstError().path[0]].error;
+            Totas.toastShort(message);
+
         }
     }
 
@@ -183,7 +188,6 @@ class Login extends Component {
             LoginInfo = t.struct({
                 username: t.String,              // a required string
                 password: t.String,
-                verifyCode: t.String,
             });
         }
         let cp = "登录"

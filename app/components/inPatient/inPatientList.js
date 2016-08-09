@@ -11,10 +11,12 @@ const {height, width} = Dimensions.get('window');
 class InPatientList extends Component {
 	static propTypes = {
 		data: PropTypes.array,
+		pending: PropTypes.bool,
 		getInPatientList: PropTypes.func,
 	};
 
 	static defaultProps = {
+		pending: false,
 		data: []
 	};
 
@@ -44,7 +46,7 @@ class InPatientList extends Component {
 	}
 
 	render() {
-		const {getInPatientList} = this.props;
+		const {getInPatientList,pending} = this.props;
 		return (
 			<ListView
 				enableEmptySections
@@ -56,7 +58,7 @@ class InPatientList extends Component {
 				renderRow={this._renderRow.bind(this) }
 				refreshControl={
 					<RefreshControl
-						refreshing={true}
+						refreshing={pending}
 						onRefresh={() => { getInPatientList() } }
 						{...Constants.refreshControl}
 						/>

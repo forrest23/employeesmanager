@@ -121,7 +121,7 @@ class inPatientListPage extends Component {
     }
 
     render() {
-        const {actions,inPatientList} = this.props;
+        const {actions, inPatientList, fetchInpatientListPending} = this.props;
         const modal = (
             <Modal onPressBackdrop={() => { this.setState({ isPickerShow: false }); } } style={styles.modal}>
                 <View style={styles.pickerIOS}>
@@ -143,10 +143,13 @@ class inPatientListPage extends Component {
         return (
             <View style={styles.container}>
                 {this._renderPicker() }
-                <View style={{flex:1}}>
-                  <InPatientList data={inPatientList} getInPatientList={actions.getInPatientList}/>
+                <View style={{ flex: 1 }}>
+                    <InPatientList data={inPatientList} 
+                    getInPatientList={actions.getInPatientList}
+                    pending={ fetchInpatientListPending }
+                    />
                 </View>
-              
+
                 {this.state.isPickerShow && modal}
             </View>
         );
@@ -318,5 +321,6 @@ export const LayoutComponent = inPatientListPage;
 export function mapStateToProps(state) {
     return {
         ...state.inPatient,
+        ...state.inPatientUI,
     };
 }

@@ -12,10 +12,13 @@ import application from './application';
 import login from './login';
 import userInfo from './userInfo';
 import inPatient from './inPatient';
+import inPatientUI from './inPatientUI';
+
 const reducer = combineReducers({
     application,
     login,
     userInfo,
     inPatient,
+    inPatientUI,
 });
 export default reducer;

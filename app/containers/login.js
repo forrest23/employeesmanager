@@ -44,9 +44,10 @@ const styles = StyleSheet.create({
     UserICon: {
         position: 'absolute',
         right: 40,
-        top: 18,
+        top: 10,
         height: 30,
         width: 30,
+        flex:1,
     },
     hidden: {
         width: 0,
@@ -55,11 +56,13 @@ const styles = StyleSheet.create({
     ImageTop: {
         height: 294,
         width: maxWidth,
+        zIndex:999,
         resizeMode: 'cover'
     },
     ImageIcon: {
         width: 20,
         height: 20,
+        flex:1,
         resizeMode: 'contain'
     },
     textBox: {
@@ -73,6 +76,11 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 17,
         height: 52,
+    },
+    groupStyle:{
+        flexDirection:'row',
+        marginBottom:1,
+        justifyContent:'center'
     }
 });
 const help = <Image
@@ -85,11 +93,10 @@ const help2 = <Image
 var Form = t.form.Form;
 let LoginInfo;
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
-stylesheet.formGroup.normal.flexDirection = 'row';
-stylesheet.formGroup.normal.marginBottom = 1;
-stylesheet.formGroup.error.marginBottom = 1;
+stylesheet.formGroup.normal=styles.groupStyle;
+stylesheet.formGroup.error=styles.groupStyle;
 
-stylesheet.formGroup.error.flexDirection = 'row';
+
 stylesheet.textbox.normal = styles.textBox;
 stylesheet.textbox.error = styles.textBox;
 stylesheet.helpBlock.normal = styles.UserICon;

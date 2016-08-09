@@ -5,27 +5,42 @@ import * as requestService from './request';
 import realm from '../realm/user';
 import * as tokenService from './token';
 
-export function Login(userName,usrPwd,vildNum) {
-    var dict= 'grant_type=password&username='+userName+'&password='+usrPwd+'&clientkey=1246&validcode='+vildNum+'&devtype=5'
+export function Login(userName, usrPwd, vildNum) {
+    var dict = 'grant_type=password&username=' + userName + '&password=' + usrPwd + '&clientkey=1246&validcode=' + vildNum + '&devtype=5'
 
-    return requestService.post('/ProfessionalWeb/oauth20/token',dict,'form').then((data)=>{
+    return requestService.post('/ProfessionalWeb/oauth20/token', dict, 'form').then((data) => {
         return data;
     });
 }
-export function updateUserInfo(userName,token,paraInfo) {
+export function updateUserInfo(userName, token, paraInfo) {
+    var token = "Bearer " + token;
+    tokenService.setToken(token);
 
+    var LastUserName = "";
+    var LastGesture = "";
+    let userInfo = realm.objects('UserInfo');
+    if (userInfo) {
+        if (userInfo[0]) {
+            if (userInfo[0].UserName) {
+                LastUserName = userInfo[0].UserName;
+            }
+            if (userInfo[0].Gesture) {
+                LastGesture = userInfo[0].Gesture;
+            }
+        }
+    }
+    if (LastUserName == "" || (LastUserName != "" && LastUserName != userName)) {
+        LastGesture = "";
+    }
 
-        var token = "Bearer " +token;
-        tokenService.setToken(token);
-
-    realm.write(()=>{
-        var parainfo=JSON.parse(paraInfo).Result;
-        if(parainfo){
-            // 创建一个用户对象
-            realm.create('UserInfo', {Id: "1", Name: parainfo.Employee.Name.toString(),
+    realm.write(() => {
+        var parainfo = JSON.parse(paraInfo).Result;
+        if (parainfo) {
+            realm.create('UserInfo', {
+                Id: "1", Name: parainfo.Employee.Name.toString(),
                 Code: parainfo.Employee.Code.toString(), UserName: userName.toString(),
-                Token:token.toString()},true);
-
+                Token: token.toString(), Gesture: LastGesture
+            }, true);
 
         }
 
@@ -35,8 +50,10 @@ export function updateUserInfo(userName,token,paraInfo) {
         // 创建菜单对象
         parainfo.moudle[0].Menus.forEach(function (item) {
 
-            realm.create('UserMenu', {Id: item.Id.toString(), Icon: item.Icon.toString(),
-                Name: item.Name.toString(),SortId:item.SortId.toString(),Actived:item.Actived.toString()},true);
+            realm.create('UserMenu', {
+                Id: item.Id.toString(), Icon: item.Icon.toString(),
+                Name: item.Name.toString(), SortId: item.SortId.toString(), Actived: item.Actived.toString()
+            }, true);
         })
 
         let userDept = realm.objects('UserDept');
@@ -44,22 +61,22 @@ export function updateUserInfo(userName,token,paraInfo) {
 
         // 创建科室对象
         parainfo.DeptPermissions.forEach(function (item) {
-            realm.create('UserDept', {DeptCode: item.DeptCode.toString(), DeptName: item.DeptName.toString()},true);
+            realm.create('UserDept', { DeptCode: item.DeptCode.toString(), DeptName: item.DeptName.toString() }, true);
         })
     });
     return true;
 }
-export function checkLoginInfo(){
-     let userInfo = realm.objects('UserInfo');
-       if(userInfo){
-           return userInfo[0];
-       }else{
-           return ;
-       }
+export function checkLoginInfo() {
+    let userInfo = realm.objects('UserInfo');
+    if (userInfo) {
+        return userInfo[0];
+    } else {
+        return;
+    }
 
 }
-export function clearUserInfo(){
-    realm.write(()=> {
+export function clearUserInfo() {
+    realm.write(() => {
         let userInfo = realm.objects('UserInfo');
         realm.delete(userInfo);
     });

@@ -8,19 +8,21 @@ import {
 } from 'react-native';
 
 import {Actions, Scene, Router} from 'react-native-router-flux';
+import connectComponent from '../utils/connectComponent';
 
 import Home from '../containers/home';//首页
 import Me from '../containers/me';//我的
 import Message from '../containers/message';//消息
 import Calendar from '../containers/calendar';//日程
 import Splash from '../containers/splash';//日程
+import Login from '../containers/login';//日程
 
 
 import CheckGesture from '../components/checkGesture';//验证手势密码
 import SetGesture from '../components/setGesture';//设置手势密码
 
 import PatientManager from '../containers/patientManager';//患者管理
-import InPatientListPage from '../containers/inPatientListPage';//患者列表
+import * as InPatientListPage from '../containers/inPatientListPage';//患者列表
 import InPatientDetail from '../containers/inPatientDetail';//患者明细
 
 
@@ -32,6 +34,7 @@ import Formula from '../containers/formula';//医学公式
 import TabIcon from '../components/tabIcon';
 import NavBar from '../components/navBar';
 
+const InPatientListPageComponent = connectComponent(InPatientListPage);
 
 const Right = () => (
   <Text
@@ -108,7 +111,8 @@ export const scenes = Actions.create(
   <Scene key="root" hideNavBar hideTabBar>
     <Scene key="checkGesture"  component={CheckGesture} title="验证手势密码" />
     <Scene key="setGesture"  component={SetGesture} title="设置手势密码" />
-    <Scene key="inPatientListPage"  component={InPatientListPage} title="住院患者"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle} renderRightButton={() => <InPatientListRight/>}/>
+     <Scene key="login"  component={Login} title="登陆" />
+    <Scene key="inPatientListPage"  component={InPatientListPageComponent} title="住院患者"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle} renderRightButton={() => <InPatientListRight/>}/>
     <Scene key="patientManager"  component={PatientManager} title="患者管理"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="inPatientDetail"  component={InPatientDetail} title="患者明细"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>
     <Scene key="vote"  component={Vote} title="先进评选"  navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle}/>

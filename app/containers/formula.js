@@ -6,6 +6,10 @@ import { View, StyleSheet, WebView , Platform} from 'react-native';
 
 const testHtml = require('../assets/formulaHtml/test.html');
 
+const testHtml1 = require('../assets/1.html');
+
+const testHtml2 = require('../assets/2.html');
+
 export default class Formula extends Component {
     render() {
         return (
@@ -13,7 +17,7 @@ export default class Formula extends Component {
                 startInLoadingState={true}
                 javaScriptEnabled={true}
                 scalesPageToFit={true}
-                source={testHtml}
+                source={testHtml2}
                 style={styles.container}
                 />
         );

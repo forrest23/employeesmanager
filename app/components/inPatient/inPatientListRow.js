@@ -1,63 +1,69 @@
 import React, {Component, PropTypes} from 'react';
-import {View, StyleSheet, Text, Image, TouchableHighlight, Dimensions,Platform} from 'react-native';
+import {View, StyleSheet, Text, Image, TouchableHighlight, Dimensions, Platform} from 'react-native';
 import { parseImgUrl } from '../../utils';
-
 
 const { width } = Dimensions.get('window');
 
-
 class InPatientListRow extends Component {
-	static propTypes = {
-		topic: PropTypes.object,
-		footer: PropTypes.node,
-		onPress: PropTypes.func
-	};
+    getSexText(sex) {
+        if (sex == "1") {
+            return "男";
+        }
+        else if (sex == "2") {
+            return "女";
+        }
+        else {
+            return "其他";
+        }
+    }
 
+    getCareLevelText(careName) {
+        if (careName.length > 0) {
+            return careName.substring(0,1);
+        }
+        else {
+            return "";
+        }
+    }
 
-	static defaultProps = {
-		onPress: () => null
-	};
+    render() {
+        const {inPatient} = this.props;
 
+        return (
+            <TouchableHighlight
+                onPress={() => { this.props.onPress(inPatient) } }
+                underlayColor='#3498DB'
+                key={inPatient.BedNo}>
 
-	render() {
-		const { topic } = this.props;
+                <View style={ styles.listRow }>
+                    <View style={styles.part_left}>
+                        <View style={[styles.bed]}><Text style={[styles.bedText]}>{inPatient.BedNo}</Text></View>
+                    </View>
 
+                    <View style={[styles.part_right]}>
+                        <View style={styles.rowText}>
+                            <View style={styles.textView}>
+                                <Text style={[styles.nameText]}>{inPatient.Name}</Text>
+                                <View style={[styles.sign]}><Text style={[styles.signText]}>{this.getCareLevelText(inPatient.CareName)}</Text></View>
+                            </View>
 
-		return (
-			<TouchableHighlight
-				onPress={() => { this.props.onPress(topic) } }
-				underlayColor='#3498DB'
-				key={topic.id}>
-
-				<View style={ styles.listRow }>
-					<View style={styles.part_left}>
-						<View style={[styles.bed]}><Text style={[styles.bedText]}>+1</Text></View>
-					</View>
-
-					<View style={[styles.part_right]}>
-						<View style={styles.rowText}>
-							<View style={styles.textView}>
-								<Text style={[styles.nameText]}>周瑞发</Text>
-								<View style={[styles.sign]}><Text style={[styles.signText]}>Ⅲ级</Text></View>
-							</View>
-
-							<Text style={[styles.nameText, styles.flex3]}>脑梗死</Text>
-						</View>
-						<View style={styles.rowText}>
-							<Text style={[styles.infoText, styles.flex1]}>女</Text>
-							<Text style={[styles.infoText, styles.flex1]}>53岁</Text>
-							<Text style={[styles.infoText, styles.flex2]}>2016-07-20</Text>
-						</View>
-					</View>
-				</View>
-			</TouchableHighlight>
-		)
-	}
+                            <Text style={[styles.nameText, styles.flex3]}>{inPatient.Diagnosis}</Text>
+                        </View>
+                        <View style={styles.rowText}>
+                            <Text style={[styles.infoText, styles.flex1]}>{this.getSexText(inPatient.Sex)}</Text>
+                            <Text style={[styles.infoText, styles.flex1]}>{inPatient.Age}</Text>
+                            <Text style={[styles.infoText, styles.flex2]}>{inPatient.InHosDate}</Text>
+                        </View>
+                    </View>
+                </View>
+            </TouchableHighlight>
+        )
+    }
 }
 
 
 var styles = StyleSheet.create({
-	listRow: {
+    listRow: {
         flexDirection: 'row',
         borderColor: '#bfbfbf',
         borderBottomWidth: 1,
@@ -72,7 +78,7 @@ var styles = StyleSheet.create({
         flex: 4,
         marginLeft: 5,
     },
-	nameText:
+    nameText:
     {
         fontSize: 18,
         color: '#404040',
@@ -128,7 +134,7 @@ var styles = StyleSheet.create({
         fontSize: 22,
         color: '#ffffff'
     },
-	textView: {
+    textView: {
         flex: 2,
         flexDirection: 'row',
     },

@@ -15,8 +15,9 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import allActions from '../actions';
-
 import { Actions } from 'react-native-router-flux';
+
+import * as UserInfo from '../services/token';
 
 const maxHeight = Dimensions.get('window').height;
 const maxWidth = Dimensions.get('window').width;
@@ -27,20 +28,22 @@ class Splash extends Component {
         super(props);
     }
 
-
     componentDidMount() {
-        const { logInState} = this.props;
+        const {actions} = this.props;
+
         //设置三秒后，闪屏消失
         setTimeout(() => {
             //在所有交互结束后进行
             InteractionManager.runAfterInteractions(() => {
-                //actions.closeSplashScreen();
                 Actions.mainPage();
-                if (logInState == "1") {
-                    Actions.checkGesture();
+                if (UserInfo.getToken() == "") {
+                    Actions.login();
+                }
+                else if (UserInfo.getGesture() == "") {
+                    Actions.setGesture();
                 }
                 else {
-                    Actions.setGesture();
+                    Actions.checkGesture();
                 }
             });
 
@@ -59,7 +62,7 @@ class Splash extends Component {
 
 function mapStateToProps(state) {
     return {
-       	...state.application,
+       	...state,
     }
 }
 

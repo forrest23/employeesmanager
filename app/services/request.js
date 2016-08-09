@@ -1,8 +1,8 @@
 import qs from 'query-string';
+import * as tokenService from './token';
 
-
-let domain ='https://professional.fdekyy.com.cn/';
-let	apiPath ='';
+let domain = 'http://professional.xinhuamed.com.cn:8090/';
+let apiPath = '';
 
 const urlPrefix = domain + apiPath;
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
@@ -37,33 +37,39 @@ export function get(url, params) {
 		console.info(`Params: `, params)
 	}
 
-	return fetch(url)
+	return fetch(url,
+		{
+			headers: {
+				'Authorization': tokenService.getToken()
+			},
+		})
 		.then(filterStatus)
 		.then(filterJSON);
 }
 
 
-export function post(url, body,type) {
+export function post(url, body, type) {
 	url = urlPrefix + url;
-	let contentType="application/json";
+	let contentType = "application/json";
 
 	if (isDebuggingInChrome) {
 		console.info(`POST: `, url);
 		console.info(`Body: `, body);
 	}
-	if(type!=undefined&&type!="json"){
-		body=body;
-		contentType="application/x-www-form-urlencoded";
-	}else{
-		body=JSON.stringify(body);
+	if (type != undefined && type != "json") {
+		body = body;
+		contentType = "application/x-www-form-urlencoded";
+	} else {
+		body = JSON.stringify(body);
 	}
 	return fetch(url, {
 		method: 'POST',
 		headers: {
 			'Content-Type': contentType,
 			'dataType': 'json',
+			'Authorization': tokenService.getToken()
 		},
-		body:body
+		body: body
 
 	})
 		.then(filterStatus)

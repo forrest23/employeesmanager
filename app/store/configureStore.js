@@ -20,14 +20,14 @@ let middlewares = [
 	thunkMiddleware,
 	promiseMiddleware,
 	asyncActionCallbackMiddleware,
-	// minPendingTimeMiddleware,
+	//minPendingTimeMiddleware,
 	utilsMiddleware,
-	// syncReducerToAsyncStorage
+	//syncReducerToAsyncStorage
 ];
 
 
 if (isDebuggingInChrome) {
-	// middlewares.push(logger);
+	//middlewares.push(logger);
 }
 
 

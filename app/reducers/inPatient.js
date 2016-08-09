@@ -1,25 +1,22 @@
-import * as types from '../config/actionTypes';
+import * as types from '../config/actionType';
 
 const initialState = {
-    inPatients: {}
+    inPatientList: []
 };
 
 export default function (state = initialState, action) {
     const {payload, error, meta = {}, type} = action;
-    const {sequence = {}, tab, id = '0', replyId = '0', userId = '0', content = '', user = {}} = meta;
+    const {sequence = {}} = meta;
 
     if (sequence.type === 'start' || error) {
         return state;
     }
 
     switch (type) {
-        case types.GET_TOPIC_BY_ID:
+        case types.GET_INPATIENT_LIST:
             return {
 				...state,
-                topics: {
-					...state.topics,
-                    [id]: payload
-                }
+                inPatientList: payload.Result,
             };
         default:
             return state;

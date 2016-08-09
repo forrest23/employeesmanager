@@ -11,6 +11,7 @@ import {
 import PasswordGesture from 'react-native-gesture-password';
 import {Actions} from "react-native-router-flux";
 import realm from '../realm/user';
+import * as UserInfo from '../services/token';
 
 var Password1 = '';
 
@@ -41,8 +42,9 @@ class SetGesture extends Component {
                     message: '设置成功'
                 });
                 realm.write(() => {
-                    realm.create('User', { name: 'forrest', userNo: '001', gesture: password });
+                    realm.create('UserInfo', { Id: '1', Gesture: Password1 }, true);
                 });
+                UserInfo.setGesture(Password1);
 
                 Password1 = '';
                 // your codes to close this view

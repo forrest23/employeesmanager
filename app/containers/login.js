@@ -15,6 +15,7 @@ import * as UserInfo from '../services/token';
 import allActions from '../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as Totas from '../utils/toast'
 var _ = require('lodash');
 const maxWidth = Dimensions.get('window').width;
 const FontAwesome = require('react-native-vector-icons/FontAwesome');
@@ -44,9 +45,10 @@ const styles = StyleSheet.create({
     UserICon: {
         position: 'absolute',
         right: 40,
-        top: 18,
+        top: 10,
         height: 30,
         width: 30,
+        flex:1,
     },
     hidden: {
         width: 0,
@@ -55,12 +57,14 @@ const styles = StyleSheet.create({
     ImageTop: {
         height: 294,
         width: maxWidth,
+        zIndex:999,
         resizeMode: 'cover'
     },
     ImageIcon: {
         width: 20,
         height: 20,
-        resizeMode: 'cover'
+        flex:1,
+        resizeMode: 'contain'
     },
     textBox: {
         backgroundColor: '#FFFFFF',
@@ -73,6 +77,11 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 17,
         height: 52,
+    },
+    groupStyle:{
+        flexDirection:'row',
+        marginBottom:1,
+        justifyContent:'center'
     }
 });
 const help = <Image
@@ -85,11 +94,10 @@ const help2 = <Image
 var Form = t.form.Form;
 let LoginInfo;
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
-stylesheet.formGroup.normal.flexDirection = 'row';
-stylesheet.formGroup.normal.marginBottom = 1;
-stylesheet.formGroup.error.marginBottom = 1;
+stylesheet.formGroup.normal=styles.groupStyle;
+stylesheet.formGroup.error=styles.groupStyle;
 
-stylesheet.formGroup.error.flexDirection = 'row';
+
 stylesheet.textbox.normal = styles.textBox;
 stylesheet.textbox.error = styles.textBox;
 stylesheet.helpBlock.normal = styles.UserICon;
@@ -156,6 +164,10 @@ class Login extends Component {
             this.props.actions.Login(value.username, value.password, value.verifyCode || '');
             this.props.actions.SetLoginLoading(true);
 
+        }else if(this.refs.form.validate().errors.length >0){
+            let message=options.fields[this.refs.form.validate().firstError().path[0]].error;
+            Totas.toastShort(message);
+
         }
     }
 
@@ -176,7 +188,6 @@ class Login extends Component {
             LoginInfo = t.struct({
                 username: t.String,              // a required string
                 password: t.String,
-                verifyCode: t.String,
             });
         }
         let cp = "登录"

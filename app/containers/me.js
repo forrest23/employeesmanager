@@ -35,7 +35,7 @@ class Me extends Component {
             <TouchableOpacity>
               <Image
                 style={styles.authorImg}
-                source={require('../assets/hzgl.png') }>
+                source={require('../assets/male.png') }>
               </Image>
             </TouchableOpacity>
           </View>
@@ -44,32 +44,46 @@ class Me extends Component {
               {UserInfo.getName() }
             </Text>
           </View>
-          <View style={{ marginTop: 20 }} >
-            <TouchableHighlight style={styles.button} onPress={() => {
-              this._logoutUser();
-            } }
-              underlayColor='#99d9f4' >
-              <Text style={styles.textRow} >退出登录</Text>
-            </TouchableHighlight>
-          </View>
+
         </View>
-        <View style={[styles.bgWall, { marginTop: 10 }]} >
+        <View style={{ marginTop: 20 }} >
+          <TouchableHighlight underlayColor='#3498DB'>
+            <View  style={styles.listRow}>
+              <View style={styles.listRowLeft}>
+                <FontAwesome name={'envelope-o'} color="#34b5da" size={35}/>
+                <Text style={styles.ListRowText}>   个人消息</Text>
+              </View>
+              <FontAwesome name={'chevron-right'} color="#404040" size={15}/>
+            </View>
+          </TouchableHighlight>
           <TouchableHighlight underlayColor='#3498DB' >
             <View  style={styles.listRow}>
               <View style={styles.listRowLeft}>
-                <FontAwesome name={'commenting'} color="#404040" size={35}/>
-                <Text style={{ color: '#404040' }}>个人消息</Text>
+                <FontAwesome name={'cog'} color="#34b5da" size={35}/>
+                <Text style={styles.ListRowText}>     修改密码</Text>
               </View>
-              <FontAwesome name={'chevron-right'} color="#404040" size={35}/>
+              <FontAwesome name={'chevron-right'} color="#404040" size={15} />
             </View>
           </TouchableHighlight>
+        </View>
+
+        <View>
+
+          <View style={{ marginTop: 20 }} >
+          <TouchableHighlight style={styles.button} onPress={() => {
+          this._logoutUser();
+          } }
+          underlayColor='#99d9f4' >
+          <Text style={styles.textRow} >退出登录</Text>
+          </TouchableHighlight>
+          </View>
         </View>
       </View>
     )
   }
 }
 
-const bgWallHeight = 200;
+const bgWallHeight = 140;
 const authorImgSize = 80;
 const fontColor = 'rgba(255,255,255,0.7)';
 
@@ -93,9 +107,8 @@ const styles = StyleSheet.create({
 
   },
   textRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    // color: 'rgba(255,255,255,0.6)'
+    fontSize:17,
+    color: '#404040'
   },
   iconWrapper: {
     flex: 1,
@@ -111,15 +124,10 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 36,
-    backgroundColor: '#34b5da',
-    borderColor: '#34b5da',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingLeft: 40,
-    paddingRight: 40,
-    marginBottom: 10,
+    backgroundColor: '#FFFFFF',
+    // borderRadius: 8,
     justifyContent: 'center',
-
+alignItems:'center',
   },
   listRow: {
     width: width,
@@ -129,7 +137,8 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     backgroundColor: '#FFFFFF',
     alignSelf: 'stretch',
-    paddingLeft: 5,
+    paddingLeft: 10,
+    paddingRight: 20,
     justifyContent: 'space-between',
   },
   listRowLeft: {
@@ -141,6 +150,10 @@ const styles = StyleSheet.create({
   listRowRight: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  ListRowText:{
+    color: '#404040',
+    fontSize:17
   }
 });
 function mapStateToProps(state) {

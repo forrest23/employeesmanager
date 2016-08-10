@@ -1,8 +1,10 @@
 'use strict';
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Platform, ScrollView, TouchableOpacity, Image} from 'react-native';
+import { Text, View, StyleSheet, Platform, ScrollView, TouchableOpacity, Image, Linking} from 'react-native';
 import {pageJump} from '../config/pageJump';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { getSexText, getCareLevelText, formatDate } from '../utils';
 
 const inPatient_bj = require('../assets/inPatient_bj.png');
 const inPatient_bq = require('../assets/inPatient_bq.png');
@@ -19,44 +21,44 @@ export default class InPatientDetail extends Component {
     }
 
     render() {
-        //const {inPatient} = this.props;
+        const {inPatient} = this.props;
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.infoContainer}>
                     <View style={styles.infoRow}>
-                        <Text style={[styles.nameText, styles.marginLeft12]}>王权</Text>
-                        <Text style={[styles.infoText, styles.marginLeft12]}>男</Text>
-                        <Text style={[styles.infoText, styles.marginLeft12]}>12岁6月</Text>
-                        <View style={[styles.sign, styles.marginLeft12]}><Text style={[styles.signText]}>Ⅱ级</Text></View>
+                        <Text style={[styles.nameText, styles.marginLeft12]}>{inPatient.Name}</Text>
+                        <Text style={[styles.infoText, styles.marginLeft12]}>{getSexText(inPatient.Sex) }</Text>
+                        <Text style={[styles.infoText, styles.marginLeft12]}>{inPatient.Age}</Text>
+                        <View style={[styles.sign, styles.marginLeft12]}><Text style={[styles.signText]}>{getCareLevelText(inPatient.CareName) }</Text></View>
                         <View style={[styles.sign, styles.marginLeft12]}><Text style={[styles.signText]}>危</Text></View>
-                        <Text style={[styles.bedText]}>01床</Text>
+                        <Text style={[styles.bedText]}>{inPatient.BedNo}床</Text>
                     </View>
                     <View style={styles.infoRow}>
                         <View style={styles.infoColumn}>
                             <Text style={[styles.infoText, styles.marginLeft12]}>住院号: </Text>
-                            <Text style={[styles.infoValue, styles.marginLeft12]}>0713552</Text>
+                            <Text style={[styles.infoValue, styles.marginLeft12]}>{inPatient.PatId}</Text>
                         </View>
 
                         <View style={styles.infoColumn}>
                             <Text style={[styles.infoText, styles.marginLeft12]}>门诊号: </Text>
-                            <Text style={[styles.infoValue, styles.marginLeft12]}>0070045762 </Text>
+                            <Text style={[styles.infoValue, styles.marginLeft12]}>{inPatient.ClinicNo}</Text>
                         </View>
                     </View>
                     <View style={styles.infoRow}>
                         <View style={styles.infoColumn}>
                             <Text style={[styles.infoText, styles.marginLeft12]}>科室: </Text>
-                            <Text style={[styles.infoValue, styles.marginLeft12]}>耳鼻咽喉科</Text>
+                            <Text style={[styles.infoValue, styles.marginLeft12]}>{inPatient.DeptName}</Text>
                         </View>
 
                         <View style={styles.infoColumn}>
                             <Text style={[styles.infoText, styles.marginLeft12]}>病区: </Text>
-                            <Text style={[styles.infoValue, styles.marginLeft12]}>第二病区 </Text>
+                            <Text style={[styles.infoValue, styles.marginLeft12]}>{inPatient.DivisionName}</Text>
                         </View>
                     </View>
                     <View style={styles.infoRow}>
                         <View style={styles.infoColumn}>
                             <Text style={[styles.infoText, styles.marginLeft12]}>入院: </Text>
-                            <Text style={[styles.infoValue, styles.marginLeft12]}>2016-07-24</Text>
+                            <Text style={[styles.infoValue, styles.marginLeft12]}>{formatDate(inPatient.InHosDate) }</Text>
                         </View>
 
                         <View style={styles.infoColumn}>
@@ -70,7 +72,7 @@ export default class InPatientDetail extends Component {
                     </View>
                     <View style={styles.infoRow}>
                         <Text style={[styles.infoText, styles.marginLeft12]}>诊断: </Text>
-                        <Text style={[styles.infoValue, styles.marginLeft12]}>横纹肌综合症 </Text>
+                        <Text style={[styles.infoValue, styles.marginLeft12]}>{inPatient.Diagnosis}</Text>
                     </View>
                     <View style={styles.infoRow}>
                         <Text style={[styles.infoText, styles.marginLeft12]}>已经金额: </Text>
@@ -78,7 +80,7 @@ export default class InPatientDetail extends Component {
                     </View>
                     <View style={styles.infoRow}>
                         <Text style={[styles.infoText, styles.marginLeft12]}>饮食类型: </Text>
-                        <Text style={[styles.infoValue, styles.marginLeft12]}>低盐低脂流质 </Text>
+                        <Text style={[styles.infoValue, styles.marginLeft12]}>{inPatient.DietName}</Text>
                     </View>
                 </View>
 
@@ -158,7 +160,7 @@ export default class InPatientDetail extends Component {
                     <View style={styles.infoRow}>
                         <Text style={[styles.infoText, styles.marginLeft12]}>电  话: </Text>
                         <Text style={[styles.infoValue, styles.marginLeft12]}>18516135071</Text>
-                        <Icon name='phone' size={22} style ={styles.marginLeft12} backgroundColor="transparent" color='#34b5da' />
+                        <Icon name='phone' size={22} style ={styles.marginLeft12} backgroundColor="transparent" color='#34b5da' onPress={() => Linking.openURL('tel:10086')}/>
                     </View>
                     <View style={styles.bottomRow}>
                         <Text style={[styles.infoText, styles.marginLeft12]}>地  址: </Text>

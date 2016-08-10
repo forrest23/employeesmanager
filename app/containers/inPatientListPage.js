@@ -8,6 +8,7 @@ import Modal from '../components/modal';
 import InPatientList from '../components/inPatient/inPatientList';
 import connectComponent from '../utils/connectComponent';
 
+
 const maleImg = require('../assets/male.png');
 const femaleImg = require('../assets/female.png');
 var halfSize = Dimensions.get('window').width;
@@ -143,11 +144,11 @@ class inPatientListPage extends Component {
         return (
             <View style={styles.container}>
                 {this._renderPicker() }
-                <View style={{ flex: 1 }}>
-                    <InPatientList data={inPatientList} 
-                    getInPatientList={actions.getInPatientList}
-                    pending={ fetchInpatientListPending }
-                    />
+                <View style={styles.list}>
+                    <InPatientList data={inPatientList}
+                        getInPatientList={actions.getInPatientList}
+                        pending={ fetchInpatientListPending }
+                        />
                 </View>
 
                 {this.state.isPickerShow && modal}
@@ -287,15 +288,15 @@ var styles = StyleSheet.create({
     bed: {
         marginLeft: 4,
         marginTop: Platform.OS === 'ios' ? 0 : 4,
-        width: 60,
-        height: 60,
+        width: 40,
+        height: 40,
         backgroundColor: '#34b5da',
-        borderRadius: 30,
+        borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',
     },
     bedText: {
-        fontSize: 22,
+        fontSize: 18,
         color: '#ffffff'
     },
     textView: {

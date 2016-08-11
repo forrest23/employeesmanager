@@ -42,29 +42,30 @@ export function updateUserInfo(userName, token, paraInfo) {
                 Token: token.toString(), Gesture: LastGesture
             }, true);
 
+            if(parainfo.moudle[0]) {
+                let userMenu = realm.objects('UserMenu');
+                realm.delete(userMenu); // 删除所有的用户菜单
+                // 创建菜单对象
+                parainfo.moudle[0].Menus.forEach(function (item) {
+
+                    realm.create('UserMenu', {
+                        Id: item.Id.toString(), Icon: item.Icon.toString(),
+                        Name: item.Name.toString(), SortId: item.SortId.toString(), Actived: item.Actived.toString()
+                    }, true);
+                })
+            }else{
+                throw 'getUserMenuError'
+            }
+            let userDept = realm.objects('UserDept');
+            realm.delete(userDept); // 删除所有的用户科室
+            // 创建科室对象
+            parainfo.DeptPermissions.forEach(function (item) {
+                realm.create('UserDept', { DeptCode: item.DeptCode.toString(), DeptName: item.DeptName.toString() }, true);
+            })
+        }else{
+            throw 'getUserInfoError'
         }
-
-
-        let userMenu = realm.objects('UserMenu');
-        realm.delete(userMenu); // 删除所有的用户菜单
-        // 创建菜单对象
-        parainfo.moudle[0].Menus.forEach(function (item) {
-
-            realm.create('UserMenu', {
-                Id: item.Id.toString(), Icon: item.Icon.toString(),
-                Name: item.Name.toString(), SortId: item.SortId.toString(), Actived: item.Actived.toString()
-            }, true);
-        })
-
-        let userDept = realm.objects('UserDept');
-        realm.delete(userDept); // 删除所有的用户科室
-
-        // 创建科室对象
-        parainfo.DeptPermissions.forEach(function (item) {
-            realm.create('UserDept', { DeptCode: item.DeptCode.toString(), DeptName: item.DeptName.toString() }, true);
-        })
     });
-    return true;
 }
 export function checkLoginInfo() {
     let userInfo = realm.objects('UserInfo');

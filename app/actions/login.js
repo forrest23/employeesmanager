@@ -13,15 +13,23 @@ export const Login = createAction(types.LOGIN, async (userName, userPwd, ValidNu
         .then(data => {
             if (data) {
                 if (!data.error) {
-                    userService.updateUserInfo(userName, data.access_token, data.para)
-                    CheckLoginState();
-                    if (UserInfo.getGesture() == "") {
-                        Actions.pop();
-                        Actions.setGesture({ hideNavBar: true, hideTabBar: true });
+                    try {
+                        userService.updateUserInfo(userName, data.access_token, data.para)
+                        CheckLoginState();
+                        if (UserInfo.getGesture() == "") {
+                            Actions.pop();
+                            Actions.setGesture({ hideNavBar: true, hideTabBar: true });
+                        }
+                        else {
+                            Actions.pop();
+                        }
                     }
-                    else {
-                        Actions.pop();
+                    catch (err) {
+                        console.warn(err);
+                    }finally {
+                        SetLoginLoading(false);
                     }
+
                 }
                 return {
                     access_token: data.access_token,
